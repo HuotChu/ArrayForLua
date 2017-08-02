@@ -99,6 +99,38 @@ local Array = {
 		return newArray
 	end,
 	
+	Entries = function (this, t)
+		local co
+		local tableInfo = this:getTableType(t)
+		local iterateArray = function ()
+			for i, v in ipairs(t) do
+				coroutine.yield(i, v)
+			end
+		end
+		local iterateTable = function ()
+			for k, v in pairs(t) do
+				coroutine.yield(k, v)
+			end
+		end
+		local Next = function ()
+			if not co then return nil, nil end			
+			
+			local _, key, val = coroutine.resume(co)
+
+			return key, val
+		end
+		
+		if tableInfo.isTable then
+			if tableInfo.isArray then
+				co = coroutine.create(iterateArray)
+			else
+				co = coroutine.create(iterateTable)
+			end
+		end
+		
+		return Next, tableInfo
+	end,
+	
 	IndexOf = function (this, t, item)
 		local tableInfo = this:getTableType(t)
 		local found = 0
@@ -259,6 +291,10 @@ local Concat = function ()
 	return coroutine.create(Array.Concat)
 end
 
+local Entries = function ()
+	return coroutine.create(Array.Entries)
+end
+
 local From = function ()
 	return coroutine.create(Array.From)
 end
@@ -309,6 +345,11 @@ return {
 		local success, returnVal = coroutine.resume(Concat(), Array, ...)
 		
 		return returnVal, success
+	end,
+	Entries = function (this, ...)
+		local success, returnVal, info = coroutine.resume(Entries(), Array, ...)
+		
+		return returnVal, info
 	end,
 	From = function (this, ...)
 		local success, returnVal = coroutine.resume(From(), Array, ...)
