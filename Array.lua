@@ -367,6 +367,38 @@ local Array = {
 		return str, tableInfo
 	end,
 	
+	Keys = function (this, t)
+		local co
+		local tableInfo = this:getTableType(t)
+		local iterateArray = function ()
+			for i = 1, #t do
+				coroutine.yield(i)
+			end
+		end
+		local iterateTable = function ()
+			for k, v in pairs(t) do
+				coroutine.yield(k)
+			end
+		end
+		local Next = function ()
+			if not co then return nil, nil end			
+			
+			local _, key = coroutine.resume(co)
+
+			return key
+		end
+		
+		if tableInfo.isTable then
+			if tableInfo.isArray then
+				co = coroutine.create(iterateArray)
+			else
+				co = coroutine.create(iterateTable)
+			end
+		end
+		
+		return Next, tableInfo
+	end,
+	
 	Length = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local n = 0
