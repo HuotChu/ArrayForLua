@@ -6,25 +6,28 @@ local Array = {
 
 		if type(t) == 'table' then
 			o.isTable = true
-
-			for i, val in ipairs(t) do
-				ndx = ndx + 1
-				if i ~= ndx then
-					o.isArray = false
-					break
-				end
+			if #t == 0 then
 				o.isArray = true
-			end
-			
-			if not o.isArray then
-				for k, v in pairs(t) do
-					if type(k) == 'number' then
-						o.isDictionary = false
-						o.isMixed = true
+			else
+				for i, val in ipairs(t) do
+					ndx = ndx + 1
+					if i ~= ndx then
+						o.isArray = false
 						break
 					end
-					o.isDictionary = true
-					o.isMixed = false
+					o.isArray = true
+				end
+				
+				if not o.isArray then
+					for k, v in pairs(t) do
+						if type(k) == 'number' then
+							o.isDictionary = false
+							o.isMixed = true
+							break
+						end
+						o.isDictionary = true
+						o.isMixed = false
+					end
 				end
 			end
 		end
@@ -513,6 +516,39 @@ local Array = {
 		end
 		
 		return length, tableInfo
+	end,
+	
+	Reduce = function (this, t, callBack, initialValue)
+		local tableInfo = this:getTableType(t)
+		local accumulator, success, currentValue, reducedValue, start, length
+		
+		if tableInfo.isArray and #t > 0 and callBack and type(callBack) == 'function' then
+			length = #t
+			if length == 1 then
+				reducedValue = t[1]
+			else
+				if initialValue ~= nil then
+					accumulator = initialValue
+					start = 1
+				else
+					accumulator = t[1]
+					start = 2
+				end
+				for i = start, length do
+					currentValue = t[i]
+					success, reducedValue = pcall(callBack, accumulator, currentValue, i, t)
+					if success then
+						accumulator = reducedValue
+					else
+						reducedValue = nil
+						break
+					end
+				end
+			end
+
+		end
+		
+		return reducedValue, tableInfo
 	end,
 	
 	Reverse = function (this, t)
