@@ -457,6 +457,38 @@ local Array = {
 		return length, tableInfo
 	end,
 	
+	Map = function (this, t, callBack, context)
+		if context and setfenv then
+			setfenv(callBack, context)
+		end
+
+		local tableInfo = this:getTableType(t)
+		local returnArray = {}
+		local success, result
+		
+		if tableInfo.isTable then
+			if tableInfo.isArray then
+				for i, v in ipairs(t) do
+					success, result = pcall(callBack, v, i, t)
+					if success then
+						table.insert(returnArray, result)
+					end
+				end
+			else
+				for k, v in pairs(t) do
+					success, result = pcall(callBack, v, k, t)
+					if success then
+						returnArray[k] = result
+					end
+				end
+			end
+		else
+			returnArray = nil
+		end
+		
+		return returnArray, tableInfo
+	end,
+	
 	Reverse = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local newArray = {}
