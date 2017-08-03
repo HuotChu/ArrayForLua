@@ -351,6 +351,22 @@ local Array = {
 		return found, tableInfo
 	end,
 	
+	Join = function (this, t, separator)
+		local tableInfo = this:getTableType(t)
+		local str
+		
+		separator = separator or ','
+
+		if tableInfo.isTable then
+			if not tableInfo.isArray then
+				t = this:From(t)
+			end
+			str = table.concat(t, separator)
+		end
+
+		return str, tableInfo
+	end,
+	
 	Length = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local n = 0
