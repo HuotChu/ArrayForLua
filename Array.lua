@@ -217,6 +217,37 @@ local Array = {
 		return returnArray, tableInfo
 	end,
 	
+	Find = function (this, t, callBack, context)
+		if context and setfenv then
+			setfenv(callBack, context)
+		end
+
+		local tableInfo = this:getTableType(t)
+		local success, result
+		
+		if tableInfo.isTable then
+			if tableInfo.isArray then
+				for i, v in ipairs(t) do
+					success, result = pcall(callBack, v, i, t)
+					if success and result then
+						result = v
+						break
+					end
+				end
+			else
+				for k, v in pairs(t) do
+					success, result = pcall(callBack, v, k, t)
+					if success and result then
+						result = v
+						break
+					end
+				end
+			end
+		end
+		
+		return result, tableInfo
+	end,
+	
 	IndexOf = function (this, t, item)
 		local tableInfo = this:getTableType(t)
 		local found = 0
