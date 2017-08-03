@@ -489,6 +489,17 @@ local Array = {
 		return returnArray, tableInfo
 	end,
 	
+	Pop = function (this, t)
+		local tableInfo = this:getTableType(t)
+		local removed
+		
+		if tableInfo.isArray then
+			removed = table.remove(t)
+		end
+		
+		return removed, tableInfo
+	end,
+	
 	Reverse = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local newArray = {}
