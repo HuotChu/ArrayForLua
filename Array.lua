@@ -292,6 +292,47 @@ local Array = {
 		return t
 	end,
 	
+	Includes = function (this, t, searchElement, fromIndex)
+		local tableInfo = this:getTableType(t)
+		local length, result
+		
+		if tableInfo.isTable then
+			length = this:Length(t)
+			if fromIndex and fromIndex > length then
+				result = false
+			elseif fromIndex and fromIndex < 0 then
+				fromIndex = length + fromIndex
+				if fromIndex < 1 then
+					fromIndex = 1
+				end
+			end
+			if result == nil then
+				if tableInfo.isArray then
+					if not fromIndex then
+						fromIndex = 1
+					end
+					for i = fromIndex, length do
+						if t[i] == searchElement then
+							result = true
+							break
+						end
+						result = false
+					end
+				else
+					for k, v in pairs(t) do
+						if v == searchElement then
+							result = true
+							break
+						end
+						result = false
+					end
+				end
+			end
+		end
+		
+		return result, tableInfo
+	end,
+	
 	IndexOf = function (this, t, item)
 		local tableInfo = this:getTableType(t)
 		local found = 0
