@@ -51,27 +51,6 @@ local Array = {
 	end,
 	
 ------------------[[  Array Methods  ]]------------------
-
-	From = function (this, o)
-		local kind = type(o)
-		local t = {}
-		
-		if kind == 'number' then
-			o = tostring(o)
-		end
-		
-		if kind == 'string' then
-			for i = 1, string.len(o) do
-				table.insert(t, i, string.sub(o, i, i))
-			end
-		elseif kind == 'table' then
-			for k, v in pairs(o) do
-				table.insert(t, v)
-			end
-		end
-		
-		return t
-	end,
 	
 	Concat = function (this, t, ...)
 		local tableInfo = this:getTableType(t)
@@ -246,6 +225,27 @@ local Array = {
 		end
 		
 		return result, tableInfo
+	end,
+	
+	From = function (this, o)
+		local kind = type(o)
+		local t = {}
+		
+		if kind == 'number' then
+			o = tostring(o)
+		end
+		
+		if kind == 'string' then
+			for i = 1, string.len(o) do
+				table.insert(t, i, string.sub(o, i, i))
+			end
+		elseif kind == 'table' then
+			for k, v in pairs(o) do
+				table.insert(t, v)
+			end
+		end
+		
+		return t
 	end,
 	
 	IndexOf = function (this, t, item)
