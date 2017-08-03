@@ -586,10 +586,10 @@ local Array = {
 	
 	Reverse = function (this, t)
 		local tableInfo = this:getTableType(t)
-		local newArray = {}
-		local position
+		local newArray, position
 		
 		if tableInfo.isArray then
+			newArray = {}
 			position = #t
 			for i, val in ipairs(t) do
 				table.insert(newArray, t[position])
@@ -600,12 +600,23 @@ local Array = {
 		return newArray, tableInfo
 	end,
 	
+	Shift = function (this, t)
+		local tableInfo = this:getTableType(t)
+		local removed
+		
+		if tableInfo.isArray and #t > 0 then
+			removed = table.remove(t, 1)
+		end
+		
+		return removed, tableInfo
+	end,
+	
 	Slice = function (this, t, begin, stop)
 		local tableInfo = this:getTableType(t)
-		local newArray = {}
-		local L
+		local newArray, L
 		
 		if tableInfo.isArray then
+			newArray = {}
 			L = #t
 			
 			if not begin then
@@ -638,13 +649,13 @@ local Array = {
 	
 	Splice = function (this, t, begin, deleteCount, ...)
 		local tableInfo = this:getTableType(t)
-		local Removed = {}
 		local Args = {...}
 		local ArgsLength = this:Length(Args)
 		local n = 0
-		local L, stop, r
+		local Removed, L, stop, r
 		
 		if tableInfo.isArray then
+			Removed = {}
 			L = #t
 			if begin > L then
 				begin = L
