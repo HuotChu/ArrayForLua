@@ -551,6 +551,39 @@ local Array = {
 		return reducedValue, tableInfo
 	end,
 	
+	ReduceRight = function (this, t, callBack, initialValue)
+		local tableInfo = this:getTableType(t)
+		local accumulator, success, currentValue, reducedValue, start, length
+		
+		if tableInfo.isArray and #t > 0 and callBack and type(callBack) == 'function' then
+			length = #t
+			if length == 1 then
+				reducedValue = t[1]
+			else
+				if initialValue ~= nil then
+					accumulator = initialValue
+					start = length
+				else
+					accumulator = t[length]
+					start = length - 1
+				end
+				for i = start, 1, -1 do
+					currentValue = t[i]
+					success, reducedValue = pcall(callBack, accumulator, currentValue, i, t)
+					if success then
+						accumulator = reducedValue
+					else
+						reducedValue = nil
+						break
+					end
+				end
+			end
+
+		end
+		
+		return reducedValue, tableInfo
+	end,
+	
 	Reverse = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local newArray = {}
