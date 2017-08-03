@@ -161,6 +161,32 @@ local Array = {
 		return result, tableInfo
 	end,
 	
+	Fill = function (this, t, val, start, stop)
+		local tableInfo = this:getTableType(t)
+		local length
+		
+		if tableInfo.isTable then
+			length = this:Length(t)
+			if not start or start < 1 then
+				start = 1
+			end
+			if not stop or stop > length then
+				stop = length
+			end
+			if tableInfo.isArray then
+				for i = start, stop do
+					t[i] = val
+				end
+			else
+				for k, _ in pairs(t) do
+					t[k] = val
+				end
+			end
+		end
+		
+		return t, tableInfo
+	end,
+	
 	IndexOf = function (this, t, item)
 		local tableInfo = this:getTableType(t)
 		local found = 0
