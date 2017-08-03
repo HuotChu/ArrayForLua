@@ -647,6 +647,36 @@ local Array = {
 		return newArray, tableInfo
 	end,
 	
+	Some = function (this, t, callBack, context)
+		if context and setfenv then
+			setfenv(callBack, context)
+		end
+		
+		local tableInfo = this:getTableType(t)
+		
+		local success, result
+		
+		if tableInfo.isTable then
+			if tableInfo.isArray then
+				for i, v in ipairs(t) do
+					success, result = pcall(callBack, v, i, t)
+					if success and result then
+						break
+					end
+				end
+			else
+				for k, v in pairs(t) do
+					success, result = pcall(callBack, v, k, t)
+					if success and result then
+						break
+					end
+				end
+			end
+		end
+		
+		return result, tableInfo
+	end,
+	
 	Splice = function (this, t, begin, deleteCount, ...)
 		local tableInfo = this:getTableType(t)
 		local Args = {...}
