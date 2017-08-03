@@ -333,19 +333,26 @@ local Array = {
 		return result, tableInfo
 	end,
 	
-	IndexOf = function (this, t, item)
+	IndexOf = function (this, t, searchElement, fromIndex)
 		local tableInfo = this:getTableType(t)
-		local found = 0
+		local found
 		
 		if tableInfo.isArray then
-			for i, v in ipairs(t) do
-				if item == v then
+			if not fromIndex then
+				fromIndex = 1
+			elseif fromIndex < 0 then
+				fromIndex = #t + 1 + fromIndex
+			end
+			if fromIndex < 1 then
+			   fromIndex = 1
+			end
+			for i = fromIndex, #t do
+				if searchElement == t[i] then
 					found = i
 					break
 				end
+				found = -1
 			end
-		else
-			found = -1
 		end
 		
 		return found, tableInfo
@@ -397,6 +404,37 @@ local Array = {
 		end
 		
 		return Next, tableInfo
+	end,
+	
+	LastIndexOf = function (this, t, searchElement, fromIndex)
+		local tableInfo = this:getTableType(t)
+		local found = -1
+		local length
+		
+		if tableInfo.isArray then
+			length = #t
+			
+			if not fromIndex or fromIndex > length then
+				fromIndex = length
+			elseif fromIndex < 0 then
+				fromIndex = length + fromIndex + 1
+			end
+			
+			if fromIndex < 1 then
+			   found = -1
+			else
+				for i = fromIndex, 1, -1 do
+					if searchElement == t[i] then
+						found = i
+						break
+					end
+				end
+			end
+		else
+			found = nil
+		end
+		
+		return found, tableInfo
 	end,
 	
 	Length = function (this, t)
