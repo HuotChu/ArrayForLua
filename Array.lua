@@ -500,6 +500,21 @@ local Array = {
 		return removed, tableInfo
 	end,
 	
+	Push = function (this, t, ...)
+		local tableInfo = this:getTableType(t)
+		local Args = {...}
+		local length
+		
+		if tableInfo.isArray and #Args > 0 then
+			for _, arg in ipairs(Args) do
+				table.insert(t, arg)
+			end
+			length = #t
+		end
+		
+		return length, tableInfo
+	end,
+	
 	Reverse = function (this, t)
 		local tableInfo = this:getTableType(t)
 		local newArray = {}
