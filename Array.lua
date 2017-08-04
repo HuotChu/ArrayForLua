@@ -55,29 +55,23 @@ local Array = {
 	
 ------------------[[  Array Methods  ]]------------------
 
-	BlockSwap = function (this, t, rangeA, rangeB)
+	BlockSwap = function (this, t, indexA, indexB, count)
 		-- no sanity checks on args...
 		-- BlockSwap is optimized for Array:Sort
-		local startA = rangeA.Start
-		local startB = rangeB.Start
-		local stopA = rangeA.Stop
-		local stopB = rangeB.Stop
-		local distance = stopB - startB
+		local stopA = indexA + count - 1
+		local stopB = indexB + count - 1
 		local blockA = {}
 		local n = 0
 		
-		for i = startA, stopA do
+		for i = indexA, stopA do
 			table.insert(blockA, t[i])
-		end
-		
-		for i = startA, startA + distance do
-			t[i] = t[startB + n]
+			t[i] = t[indexB + n]
 			n = n + 1
 		end
 		
 		n = 1
 		
-		for i = startB, stopB do
+		for i = indexB, stopB do
 			t[i] = blockA[n]
 			n = n + 1
 		end
