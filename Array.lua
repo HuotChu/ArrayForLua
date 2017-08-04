@@ -54,6 +54,36 @@ local Array = {
 	end,
 	
 ------------------[[  Array Methods  ]]------------------
+
+	BlockSwap = function (this, t, rangeA, rangeB)
+		-- no sanity checks on args...
+		-- BlockSwap is optimized for Array:Sort
+		local startA = rangeA.Start
+		local startB = rangeB.Start
+		local stopA = rangeA.Stop
+		local stopB = rangeB.Stop
+		local distance = stopB - startB
+		local blockA = {}
+		local n = 0
+		
+		for i = startA, stopA do
+			table.insert(blockA, t[i])
+		end
+		
+		for i = startA, startA + distance do
+			t[i] = t[startB + n]
+			n = n + 1
+		end
+		
+		n = 1
+		
+		for i = startB, stopB do
+			t[i] = blockA[n]
+			n = n + 1
+		end
+		
+		return nil
+	end,
 	
 	Concat = function (this, t, ...)
 		local tableInfo = this:getTableType(t)
@@ -677,6 +707,27 @@ local Array = {
 		return result, tableInfo
 	end,
 	
+	Sort = function (this, t, ...)
+		local tableInfo = this:getTableType(t)
+		local Args = {...}
+		local direction, sortFunction
+		
+		if tableInfo.isTable then
+			if #Args > 0 then
+				direction = Args[1]
+				if type(direction) == 'function' then
+					sortFunction = direction
+					direction = 1
+				elseif #Args == 2 then
+					sortFunction = Args[2]
+				end 
+			end
+			
+			-- TODO: Implement block sort
+			
+		end
+	end,
+	
 	Splice = function (this, t, begin, deleteCount, ...)
 		local tableInfo = this:getTableType(t)
 		local Args = {...}
@@ -724,7 +775,19 @@ local Array = {
 		end
 		
 		return Removed, tableInfo
+	end,
+	
+	Swap = function (this, t, ndx1, ndx2)
+		-- no sanity checks on args...
+		-- Swap is optimized for Array:Sort
+		local tmp = t[ndx1]
+		
+		t[ndx1] = t[ndx2]
+		t[ndx2] = tmp
+
+		return nil
 	end
+	
 }
 
 return Array
