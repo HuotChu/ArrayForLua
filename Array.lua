@@ -608,20 +608,35 @@ local Array = {
 		return reducedValue, tableInfo
 	end,
 	
-	Reverse = function (this, t)
+	Reverse = function (this, t, start, stop)
 		local tableInfo = this:getTableType(t)
-		local newArray, position
+		local length, distance, temp, startIndex, stopIndex
 		
 		if tableInfo.isArray then
-			newArray = {}
-			position = #t
-			for i, val in ipairs(t) do
-				table.insert(newArray, t[position])
-				position = position - 1
+			length = #t
+			
+			if not start or start < 1 then
+				start = 1
+			end
+			
+			if not stop or (stop and stop > length) then
+				stop = length
+			end
+
+			distance = stop - start
+			
+			for i = math.floor(distance * .5), 0, -1 do
+				startIndex = start + i
+				stopIndex = stop - i
+				if startIndex ~= stopIndex then
+					temp = t[startIndex]
+					t[startIndex] = t[stopIndex]
+					t[stopIndex] = temp
+				end
 			end
 		end
 		
-		return newArray, tableInfo
+		return t, tableInfo
 	end,
 	
 	Shift = function (this, t)
