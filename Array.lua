@@ -55,6 +55,70 @@ local Array = {
 	
 ------------------[[  Array Methods  ]]------------------
 
+	BinaryFirst = function (this, t, searchElement, startIndex, stopIndex)
+		local middle, value
+		
+		if not startIndex then
+			startIndex = 1
+		end
+		
+		if not stopIndex then
+			stopIndex = #t
+		end
+		
+		while startIndex < stopIndex do
+			-- prevent stack overflow with redundant math
+			middle = math.floor( startIndex + (stopIndex - startIndex) * .5 )
+			value = t[middle]
+			if value < searchElement then
+				startIndex = middle + 1
+			else
+				stopIndex = middle
+			end
+		end
+		
+		if startIndex == stopIndex and t[startIndex] < searchElement then
+			startIndex = startIndex + 1
+		end
+		
+		if startIndex > #t then
+			startIndex = nil
+		end
+		
+		return startIndex
+	end,
+	
+	BinaryLast = function (this, t, searchElement, startIndex, stopIndex)
+		local middle, value
+		
+		if not startIndex then
+			startIndex = 1
+		end
+		
+		if not stopIndex then
+			stopIndex = #t
+		end
+		
+		while startIndex < stopIndex do
+			-- prevent stack overflow with redundant math
+			middle = math.floor( startIndex + (stopIndex - startIndex) * .5 )
+			value = t[middle]
+			if value <= searchElement then
+				startIndex = middle + 1
+			else
+				stopIndex = middle
+			end
+		end
+		
+		if startIndex == stopIndex and t[startIndex] > searchElement and t[startIndex - 1] == searchElement then
+			startIndex = startIndex - 1
+		elseif startIndex >= #t and t[startIndex] ~= searchElement and t[startIndex - 1] ~= searchElement then
+			startIndex = nil
+		end
+		
+		return startIndex
+	end,
+
 	BlockSwap = function (this, t, indexA, indexB, count)
 		-- no sanity checks on args...
 		-- BlockSwap is optimized for Array:Sort
