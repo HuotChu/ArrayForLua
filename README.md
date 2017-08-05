@@ -33,6 +33,8 @@ Array library for Lua
 
 **Array:IndexOf()**
 
+**Array:InsertionSort()**
+
 **Array:Join()**
 
 **Array:Keys()**

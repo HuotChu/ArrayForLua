@@ -455,6 +455,36 @@ local Array = {
 		return found, tableInfo
 	end,
 	
+	InsertionSort = function (this, t, start, stop)
+		local tmp, j
+		
+		if not start then
+			start = 1
+		end
+		
+		if not stop then
+			stop = #t
+		end
+		
+		if stop == 0 then
+			return nil, false
+		end
+		
+		for i = start + 1, stop do
+			tmp = t[i]
+			j = i - 1
+			
+			while j > 0 and t[j] > tmp do
+				t[j+1] = t[j]
+				j = j - 1
+			end
+			
+			t[j + 1] = tmp
+		end
+		
+		return t, true
+	end,
+	
 	Join = function (this, t, separator)
 		local tableInfo = this:getTableType(t)
 		local str
