@@ -615,12 +615,24 @@ local Array = {
 		if tableInfo.isArray then
 			length = #t
 			
-			if not start or start < 1 then
+			if not start then
 				start = 1
+			elseif start < 1 then
+				start = stop - start
 			end
 			
-			if not stop or (stop and stop > length) then
+			if start == 0 then
+				start = stop
+			end
+			
+			if not stop or stop > length then
 				stop = length
+			elseif stop < 1 then
+				stop = length - stop
+			end
+			
+			if stop < start then
+				stop = start
 			end
 
 			distance = stop - start
@@ -637,6 +649,25 @@ local Array = {
 		end
 		
 		return t, tableInfo
+	end,
+	
+	Rotate = function (this, t, start, stop, step)
+		local length = #t
+		local split, calculatedStart, calculatedStop
+		
+		if start and stop and step and step ~= 0 then
+			split = start + step
+	
+			if step > 0 then
+				calculatedStop = split - 1
+			else
+				calculatedStop = stop + step
+			end
+			
+			this:Reverse(t, start, calculatedStop)
+			this:Reverse(t, calculatedStop + 1, stop)
+			this:Reverse(t, start, stop)
+		end
 	end,
 	
 	Shift = function (this, t)
