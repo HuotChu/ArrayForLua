@@ -6,7 +6,7 @@ local Array = {
 
 		if type(t) == 'table' then
 			o.isTable = true
-			if #t == 0 then
+			if this:isEmpty(t) then
 				o.isArray = true
 			else
 				for i, val in ipairs(t) do
@@ -47,6 +47,14 @@ local Array = {
 		return tableInfo.isDictionary
 	end,
 	
+	isEmpty = function (this, t)
+	    for k, v in pairs(t) do
+	        return false
+	    end
+
+	    return true
+	end,
+	
 	isMixed = function (this, t)
 		local tableInfo = this:getTableType(t)
 		
@@ -67,7 +75,6 @@ local Array = {
 		end
 		
 		while startIndex < stopIndex do
-			-- prevent stack overflow with redundant math
 			middle = math.floor( startIndex + (stopIndex - startIndex) * .5 )
 			value = t[middle]
 			if value < searchElement then
@@ -100,7 +107,6 @@ local Array = {
 		end
 		
 		while startIndex < stopIndex do
-			-- prevent stack overflow with redundant math
 			middle = math.floor( startIndex + (stopIndex - startIndex) * .5 )
 			value = t[middle]
 			if value <= searchElement then
