@@ -380,7 +380,7 @@ print(Array:toString(a)) -- 1,1,1
 ```lua
 Array:Fill(table, value)
 Array:Fill(table, value, start)
-Array:Fill(table, value, start, end)
+Array:Fill(table, value, start, stop)
 ```
 
 
@@ -393,11 +393,11 @@ Array:Fill(table, value, start, end)
 - The value used to fill all elements of **table**.
 
 **start** <kbd>Optional</kbd>
-- Start index, defaults to 0.
+- First index, defaults to 0.
 - Dictionary and mixed tables always use the default.
 
-**end** <kbd>Optional</kbd>
-- End index, defaults to the length of **table**.
+**stop** <kbd>Optional</kbd>
+- Last index, defaults to the length of **table**.
 - Dictionary and mixed tables always use the default.
 
 
