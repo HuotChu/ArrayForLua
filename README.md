@@ -1,7 +1,7 @@
 ArrayForLua
 ===================
 
-## This is a collection of Array methods for working with tables and arrays in Lua.
+# This is a collection of Array methods for working with tables and arrays in Lua.
 
 
 > Roblox Developers: Starting on GitHub...
@@ -13,7 +13,7 @@ ArrayForLua
 > - Rename the ModuleScript to **Array** and open the file
 > - Delete the starter code in the file, then press <kbd>Ctrl+V</kbd> to paste in the Array code
 > - To include the Array module in other scripts:
-```sh
+```lua
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
 local Array = require(ReplicatedStorage:WaitForChild('Array'))
 ```
@@ -23,7 +23,45 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 ArrayForLua API
 --------------------
 
-**Array:BinaryFirst()**
+
+# Array:BinaryFirst()
+
+The **BinaryFirst()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the first occurrence.
+If *searchElement* is not found, `nil` is returned.
+
+```lua
+local a = {1, 1, 1, 2, 2, 2, 3, 3}
+
+Array:BinaryFirst(a, 2)  -- 4
+Array:BinaryFirst(a, 3)  -- 7
+```
+
+### Syntax
+
+```lua
+Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
+```
+
+## Parameters
+
+**table**
+The table to be searched must be an *array*.
+
+**searchElement**
+The thing to find in the array.
+
+**startIndex** <kbd>Optional</kbd>
+Location in the array to begin searching.
+
+**stopIndex** <kbd>Optional</kbd>
+Location in the array to stop searching.
+
+## Return Value
+
+The first index of the item found in the array; or nil if the item was not found.
+
+----
+
 
 **Array:BinaryLast()**
 
