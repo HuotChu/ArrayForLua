@@ -257,25 +257,24 @@ Array = {
 	end,
 	
 	Every = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-		
 		local tableInfo = this:getTableType(t)
 		
 		local success, result
 		
 		if tableInfo.isTable then
+			if this:isEmpty(t) then
+				return true, tableInfo
+			end
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 					if not success or not result then
 						break
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 					if not success or not result then
 						break
 					end
@@ -313,10 +312,6 @@ Array = {
 	end,
 	
 	Filter = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-
 		local tableInfo = this:getTableType(t)
 		local returnArray = {}
 		local success, result
@@ -324,14 +319,14 @@ Array = {
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 					if success and result then
 						table.insert(returnArray, v)
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 					if success and result then
 						returnArray[k] = v
 					end
@@ -343,17 +338,13 @@ Array = {
 	end,
 	
 	Find = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-
 		local tableInfo = this:getTableType(t)
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 					if success and result then
 						result = v
 						break
@@ -361,7 +352,7 @@ Array = {
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 					if success and result then
 						result = v
 						break
@@ -374,16 +365,12 @@ Array = {
 	end,
 	
 	FindIndex = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-
 		local tableInfo = this:getTableType(t)
 		local success, result
 		
 		if tableInfo.isArray then
 			for i, v in ipairs(t) do
-				success, result = pcall(callBack, v, i, t)
+				success, result = pcall(callBack, v, i, t, context or this)
 				if success and result then
 					result = i
 					break
@@ -395,21 +382,17 @@ Array = {
 	end,
 	
 	ForEach = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-
 		local tableInfo = this:getTableType(t)
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 				end
 			end
 		end
@@ -634,10 +617,6 @@ Array = {
 	end,
 	
 	Map = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-
 		local tableInfo = this:getTableType(t)
 		local returnArray = {}
 		local success, result
@@ -645,14 +624,14 @@ Array = {
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 					if success then
 						table.insert(returnArray, result)
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 					if success then
 						returnArray[k] = result
 					end
@@ -867,10 +846,6 @@ Array = {
 	end,
 	
 	Some = function (this, t, callBack, context)
-		if context and setfenv then
-			setfenv(callBack, context)
-		end
-		
 		local tableInfo = this:getTableType(t)
 		
 		local success, result
@@ -878,14 +853,14 @@ Array = {
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t)
+					success, result = pcall(callBack, v, i, t, context or this)
 					if success and result then
 						break
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t)
+					success, result = pcall(callBack, v, k, t, context or this)
 					if success and result then
 						break
 					end

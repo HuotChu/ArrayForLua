@@ -188,7 +188,7 @@ local arr3 = Array:Concat(arr1, arr2)
 > #### Syntax
 
 ```lua
-local newArray = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
+local newArray, tableInfo = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
 ```
 
 
@@ -267,7 +267,7 @@ end
 > #### Syntax
 
 ```lua
-Array:Entries(table)
+local iterator, tableInfo = Array:Entries(table)
 ```
 
 
@@ -285,9 +285,64 @@ Array:Entries(table)
 
 ----
 
+&nbsp;
+
+### Array:Every()
 
 
-**Array:Every()**
+The **Every()** method tests whether all elements in a table pass the test implemented by the provided function.
+
+
+> #### Example
+
+```lua
+local isBigEnough = function (element, index, array) { 
+  return element >= 10 
+} 
+
+local a = {12, 5, 8, 130, 44}
+local b = {12, 54, 18, 130, 44}
+
+Array:Every(a, isBigEnough)   -- false 
+Array:Every(b, isBigEnough)   -- true
+```
+
+
+> #### Syntax
+
+```lua
+local isEveryTrue, tableInfo = Array:Every(table, function, context)
+```
+
+
+> #### Parameters
+
+**table**
+- The table to iterate over can be array, dictionary, or mixed.
+
+**function**
+- Function to test for each element, taking four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the table.
+    - table <kbd>Optional</kbd>
+        - The table *Every* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable. Defaults to the Array API Object.
+
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+
+> #### Multiple Return Values
+
+- Returns two values:
+    - value1 == The result. **true** if the callback function returns truthy for every table value; otherwise, **false**.
+    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+
+----
+
 
 **Array:Fill()**
 
