@@ -393,7 +393,7 @@ Array:Fill(table, value, start, stop)
 - The value used to fill all elements of **table**.
 
 **start** <kbd>Optional</kbd>
-- First index, defaults to 0.
+- First index, defaults to 1.
 - Dictionary and mixed tables always use the default.
 
 **stop** <kbd>Optional</kbd>
