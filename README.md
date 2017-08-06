@@ -214,9 +214,78 @@ The **Concat** method creates a new array consisting of the elements in the arra
 
 ----
 
+&nbsp;
+
+### Array:Entries()
 
 
-**Array:Entries()**
+The **Entries()** method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+
+
+> #### Example 1: Calling the Iterator on an array
+
+```lua
+local a = {'a', 'b', 'c'}
+local iterator = Array:Entries(a)
+local key, val
+
+key, val = iterator() -- 1  'a'
+key, val = iterator() -- 2  'b'
+key, val = iterator() -- 3  'c'
+key, val = iterator() -- nil  nil
+```
+
+
+> #### Example 2: Using `for`...`in` loop on an array
+
+```lua
+local a = {'a', 'b', 'c'}
+
+for k, v in Array:Entries(a) do
+    print(k, v)
+end
+-- 1  'a'
+-- 2  'b'
+-- 3  'c'
+```
+
+
+> #### Example 3: Using `for`...`in` loop on a dictionary
+
+```lua
+local a = {foo='bar', faa='baz', fee='boz'}
+
+for k, v in Array:Entries(a) do
+    print(k, v)
+end
+-- foo  'bar'
+-- faa  'baz'
+-- fee  'boz'
+```
+
+
+> #### Syntax
+
+```lua
+Array:Entries(table)
+```
+
+
+> #### Parameters
+
+**table**
+- The table to iterate over can be array, dictionary, or mixed.
+
+
+> #### Multiple Returns
+
+- Returns two values: 
+    - value1 == The iterator function.
+    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+
+----
+
+
 
 **Array:Every()**
 
