@@ -296,15 +296,12 @@ The **Every()** method tests whether all elements in a table pass the test imple
 > #### Example
 
 ```lua
-local isBigEnough = function (element, index, array) { 
+local isBigEnough = function (element, index, array, this) { 
   return element >= 10 
-} 
+}
 
-local a = {12, 5, 8, 130, 44}
-local b = {12, 54, 18, 130, 44}
-
-Array:Every(a, isBigEnough)   -- false 
-Array:Every(b, isBigEnough)   -- true
+Array:Every({12, 5, 8, 130, 44}, isBigEnough)   -- false 
+Array:Every({12, 54, 18, 130, 44}, isBigEnough)   -- true
 ```
 
 
