@@ -47,20 +47,20 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 #### Parameters
 
 **table**
-The table to be searched must be an *array*.
+- The table to be searched must be an *array*.
 
 **searchElement**
-The thing to find in the array.
+- The thing to find in the array.
 
 **startIndex** <kbd>Optional</kbd>
-Location in the array to begin searching.
+- Location in the array to begin searching.
 
 **stopIndex** <kbd>Optional</kbd>
-Location in the array to stop searching.
+- Location in the array to stop searching.
 
 #### Return Value
 
-The first index of the item found in the array; or nil if the item was not found.
+- The first index of the item found in the array; or nil if the item was not found.
 
 ----
 
