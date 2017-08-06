@@ -161,7 +161,7 @@ Array:BlockSwap(table, indexA, indexB, count)
 
 > #### Return Value
 
-- Returns nil; the original table is modified by the function call.
+- Returns the original, modified table.
 
 ----
 
