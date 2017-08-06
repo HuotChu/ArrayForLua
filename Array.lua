@@ -221,7 +221,7 @@ Array = {
 			end
 		end
 		
-		return newArray
+		return newArray, tableInfo
 	end,
 	
 	Entries = function (this, t)

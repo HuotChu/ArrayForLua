@@ -26,10 +26,12 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
+
 ### Array:BinaryFirst()
 
 The **BinaryFirst()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the first occurrence.
 If *searchElement* is not found, `nil` is returned.
+
 
 > #### Example
 
@@ -40,11 +42,13 @@ Array:BinaryFirst(a, 2)  -- 4
 Array:BinaryFirst(a, 3)  -- 7
 ```
 
+
 > #### Syntax
 
 ```lua
 Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 ```
+
 
 > #### Parameters
 
@@ -59,6 +63,7 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 
 **stopIndex** <kbd>Optional</kbd>
 - Location in the array to stop searching.
+
 
 > #### Return Value
 
@@ -70,8 +75,10 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 
 ### Array:BinaryLast()
 
+
 The **BinaryLast()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the last occurrence.
 If *searchElement* is not found, `nil` is returned.
+
 
 > #### Example
 
@@ -82,11 +89,13 @@ Array:BinaryLast(a, 2)  -- 6
 Array:BinaryLast(a, 3)  -- 8
 ```
 
+
 > #### Syntax
 
 ```lua
 Array:BinaryLast(table, searchElement, startIndex, stopIndex)
 ```
+
 
 > #### Parameters
 
@@ -102,6 +111,7 @@ Array:BinaryLast(table, searchElement, startIndex, stopIndex)
 **stopIndex** <kbd>Optional</kbd>
 - Location in the array to stop searching.
 
+
 > #### Return Value
 
 - The last index of the item found in the array; or nil if the item was not found.
@@ -112,7 +122,9 @@ Array:BinaryLast(table, searchElement, startIndex, stopIndex)
 
 ### Array:BlockSwap()
 
+
 The **BlockSwap()** method exchanges one block *(range)* of items in an array with a second block of items.
+
 
 > #### Example
 
@@ -123,11 +135,13 @@ Array:BlockSwap(a, 1, 5, 4)
 print(Array:toString(a)) -- 5,6,7,8,1,2,3,4
 ```
 
+
 > #### Syntax
 
 ```lua
 Array:BlockSwap(table, indexA, indexB, count)
 ```
+
 
 > #### Parameters
 
@@ -142,7 +156,8 @@ Array:BlockSwap(table, indexA, indexB, count)
 
 **count**
 - The length of each block is equal to **count**; blocks must be of **equal size**.
-- The last index of each block == `*index[A|B]* + *count* - 1`
+- The last index of each block == `index[A|B] + count - 1`
+
 
 > #### Return Value
 
@@ -150,8 +165,51 @@ Array:BlockSwap(table, indexA, indexB, count)
 
 ----
 
+&nbsp;
 
-**Array:Concat()**
+### Array:Concat()
+
+
+The **Concat()** method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
+
+
+> #### Example
+
+```lua
+local arr1 = {'a', 'b', 'c'}
+local arr2 = {'d', 'e', 'f'}
+
+local arr3 = Array:Concat(arr1, arr2)
+
+-- arr3 is a new array { 'a', 'b', 'c', 'd','e', 'f' }
+```
+
+
+> #### Syntax
+
+```lua
+local newArray = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
+```
+
+
+> #### Parameters
+
+**sourceArray**
+- The initial table on which to add new values must be an *array*.
+
+**valueN**
+- Array(s) and/or value(s) to concatenate into a new array; **value1 is required**.
+
+> The **Concat** method creates a new array consisting of the elements in the array on which it is called, followed in order by, for each argument, the elements of that argument (if the argument is an array) or the argument itself (if the argument is not an array). It does not recurse into nested array arguments.
+
+
+> #### Return Value
+
+- Returns two values: value1 == A new Array instance, value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+
+----
+
+
 
 **Array:Entries()**
 
