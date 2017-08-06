@@ -359,8 +359,9 @@ The range of elements processed by **Every** is set before the first invocation 
 ### Array:Fill()
 
 
-The **Fill()** method fills all the elements of an array from a start index to an end index with a static value. 
-Dictionary and Mixed tables have unordered indices, so they are always filled from end to end.
+The **Fill()** method fills all the elements of an array from a start index to an end index with a static value.
+
+Dictionary and mixed tables have unordered indices, so they are always filled from end to end.
 
 
 > #### Example
