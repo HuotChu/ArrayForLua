@@ -300,7 +300,7 @@ local isBigEnough = function (element, index, array, this) {
   return element >= 10 
 }
 
-Array:Every({12, 5, 8, 130, 44}, isBigEnough)   -- false 
+Array:Every({12, 5, 8, 130, 44}, isBigEnough)     -- false 
 Array:Every({12, 54, 18, 130, 44}, isBigEnough)   -- true
 ```
 
@@ -354,8 +354,60 @@ The range of elements processed by **Every** is set before the first invocation 
 
 ----
 
+&nbsp;
 
-**Array:Fill()**
+### Array:Fill()
+
+
+The **Fill()** method fills all the elements of an array from a start index to an end index with a static value. 
+Dictionary and Mixed tables have unordered indices, so they are always filled from end to end.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+
+Array:Fill(a, 1)
+
+print(Array:toString(a)) -- 1,1,1
+```
+
+
+> #### Syntax
+
+```lua
+Array:Fill(table, value)
+Array:Fill(table, value, start)
+Array:Fill(table, value, start, end)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to iterate over can be array, dictionary, or mixed.
+
+**value** `Required`
+- The value used to fill all elements of **table**.
+
+**start** <kbd>Optional</kbd>
+- Start index, defaults to 0.
+- Dictionary and mixed tables always use the default.
+
+**end** <kbd>Optional</kbd>
+- End index, defaults to the length of **table**.
+- Dictionary and mixed tables always use the default.
+
+
+> #### Multiple Return Values
+
+- Returns two values:
+    - value1 == The original, modified **table**
+    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+
+----
+
 
 **Array:Filter()**
 
