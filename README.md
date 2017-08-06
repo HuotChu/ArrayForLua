@@ -52,10 +52,10 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 
 > #### Parameters
 
-**table**
+**table** `Required`
 - The table to be searched must be an *array*.
 
-**searchElement**
+**searchElement** `Required`
 - The thing to find in the array.
 
 **startIndex** <kbd>Optional</kbd>
@@ -99,10 +99,10 @@ Array:BinaryLast(table, searchElement, startIndex, stopIndex)
 
 > #### Parameters
 
-**table**
+**table** `Required`
 - The table to be searched must be an *array*.
 
-**searchElement**
+**searchElement** `Required`
 - The thing to find in the array.
 
 **startIndex** <kbd>Optional</kbd>
@@ -145,16 +145,16 @@ Array:BlockSwap(table, indexA, indexB, count)
 
 > #### Parameters
 
-**table**
+**table** `Required`
 - The table to be searched must be an *array*.
 
-**indexA**
+**indexA** `Required`
 - Index in the array where the **first** block **begins**.
 
-**indexB**
+**indexB** `Required`
 - Index in the array where the **second** block **begins**.
 
-**count**
+**count** `Required`
 - The length of each block is equal to **count**; blocks must be of **equal size**.
 - The last index of each block == `index[A|B] + count - 1`
 
@@ -194,11 +194,11 @@ local newArray, tableInfo = Array:Concat(sourceArray, value1[, value2[, ...[, va
 
 > #### Parameters
 
-**sourceArray**
+**sourceArray** `Required`
 - The initial table on which to add new values must be an *array*.
 
-**valueN**
-- Array(s) and/or value(s) to concatenate into a new array; **value1 is required**.
+**valueN** `Required`
+- Array(s) and/or value(s) to concatenate into a new array.
 
 &nbsp;
 
@@ -273,7 +273,7 @@ local iterator, tableInfo = Array:Entries(table)
 
 > #### Parameters
 
-**table**
+**table** `Required`
 - The table to iterate over can be array, dictionary, or mixed.
 
 
@@ -314,10 +314,10 @@ local isEveryTrue, tableInfo = Array:Every(table, function, context)
 
 > #### Parameters
 
-**table**
+**table** `Required`
 - The table to iterate over can be array, dictionary, or mixed.
 
-**function**
+**function** `Required`
 - Function to test for each element, taking four arguments:
     - currentValue `Required`
         - The current element being processed in the table.
