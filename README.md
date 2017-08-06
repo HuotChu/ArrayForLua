@@ -1,10 +1,12 @@
 ArrayForLua
 ===================
 
-# This is a collection of Array methods for working with tables and arrays in Lua.
+
+This is a collection of Array methods for working with tables and arrays in Lua.
 
 
-> Roblox Developers: Starting on GitHub...
+
+> Roblox Developers: To use, start here on GitHub...
 > - Click on **Array.lua**
 > - Click the **Raw** button
 > - Press <kbd>Ctrl+A</kbd> to Select All then <kbd>Ctrl+C</kbd> to Copy the code
@@ -20,11 +22,11 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 > - Non-copylocked "Game" with full test coverage and implementation examples [here][2]
 
 
-ArrayForLua API
---------------------
+
+# ArrayForLua API
 
 
-# Array:BinaryFirst()
+## Array:BinaryFirst()
 
 The **BinaryFirst()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the first occurrence.
 If *searchElement* is not found, `nil` is returned.
@@ -42,7 +44,7 @@ Array:BinaryFirst(a, 3)  -- 7
 Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 ```
 
-## Parameters
+### Parameters
 
 **table**
 The table to be searched must be an *array*.
@@ -56,7 +58,7 @@ Location in the array to begin searching.
 **stopIndex** <kbd>Optional</kbd>
 Location in the array to stop searching.
 
-## Return Value
+### Return Value
 
 The first index of the item found in the array; or nil if the item was not found.
 
