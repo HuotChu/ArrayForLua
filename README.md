@@ -71,6 +71,8 @@ Array library for Lua
 
 **Array:Unshift()**
 
+**Array:Values()**
+
 **Array:getTableType()**
 
 **Array:isArray()**
