@@ -38,13 +38,13 @@ Array:BinaryFirst(a, 2)  -- 4
 Array:BinaryFirst(a, 3)  -- 7
 ```
 
-#### Syntax
+> #### Syntax
 
 ```lua
 Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 ```
 
-#### Parameters
+> #### Parameters
 
 **table**
 - The table to be searched must be an *array*.
@@ -58,7 +58,7 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 **stopIndex** <kbd>Optional</kbd>
 - Location in the array to stop searching.
 
-#### Return Value
+> #### Return Value
 
 - The first index of the item found in the array; or nil if the item was not found.
 
