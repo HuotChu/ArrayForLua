@@ -1,4 +1,27 @@
-local Array = {
+local Array = {}
+
+local val_to_str = function (v)
+	if 'string' == type(v) then
+		v = string.gsub(v, '\n', '\\n')
+		if string.match(string.gsub(v, '[^\'"]', ''), '^"+$') then
+			return '"'..v..'"'
+		end
+		
+		return "'"..string.gsub(v, "'", '\\"').."'"
+	else
+		return 'table' == type(v) and Array:toString(v) or tostring(v)
+	end
+end
+
+local key_to_str = function (k)
+	if 'string' == type(k) and string.match(k, '^[_%a][_%a%d]*$') then
+		return k
+	else
+		return '['..val_to_str(k)..']'
+	end
+end
+
+Array = {
 	--[[ Helper & Convenience Functions ]]--
 	getTableType = function (this, t)
 		local o = {isTable = false, isArray = false, isDictionary = false, isMixed = false}
@@ -59,6 +82,34 @@ local Array = {
 		local tableInfo = this:getTableType(t)
 		
 		return tableInfo.isMixed
+	end,
+	
+	isTable = function (this, t)
+		return type(t) == 'table'
+	end,
+	
+	toString = function (this, t)
+		local tableInfo = this:getTableType(t)
+		local result, done = {}, {}
+		
+		if tableInfo.isTable then
+			for k, v in ipairs(t) do
+				table.insert(result, val_to_str(v))
+				done[k] = true
+			end
+			
+			for k, v in pairs(t) do
+				if not done[k] then
+					table.insert(result, key_to_str(k)..'='..val_to_str(v))
+				end
+			end
+			
+			done = table.concat(result, ',')
+		else
+			done = false
+		end
+		
+		return done, tableInfo
 	end,
 	
 ------------------[[  Array Methods  ]]------------------
@@ -126,8 +177,6 @@ local Array = {
 	end,
 
 	BlockSwap = function (this, t, indexA, indexB, count)
-		-- no sanity checks on args...
-		-- BlockSwap is optimized for Array:Sort
 		local stopA = indexA + count - 1
 		local stopB = indexB + count - 1
 		local blockA = {}
@@ -850,22 +899,80 @@ local Array = {
 	Sort = function (this, t, ...)
 		local tableInfo = this:getTableType(t)
 		local Args = {...}
-		local direction, sortFunction
+		local direction, sortFunction, tableSort
 		
+		local descend = function (a, b)
+			return a > b
+		end
+		
+		local tableAscend = function (a, b)
+			return t[a] < t[b]
+		end
+		
+		local tableDescend = function (a, b)
+			return t[a] > t[b]
+		end
+			
 		if tableInfo.isTable then
 			if #Args > 0 then
 				direction = Args[1]
 				if type(direction) == 'function' then
 					sortFunction = direction
-					direction = 1
+					direction = -1
 				elseif #Args == 2 then
 					sortFunction = Args[2]
-				end 
+				end
 			end
 			
-			-- TODO: Implement block sort
+			if tableInfo.isArray then
+				if not sortFunction and direction and direction == 1 then
+					-- direction: -1 == ascending, 1 == descending
+					sortFunction = descend
+				end
+				-- sort an array using shellsort
+				table.sort(t, sortFunction)
+			else
+				-- sorting a dictionary or mixed table
+				if not sortFunction then 
+					if direction and direction == 1 then
+						sortFunction = tableDescend
+					else
+						sortFunction = tableAscend					
+					end
+				end
+				
+				local KeyMap = {}
+				local x = 0
+				
+				local iterate = function ()
+					for i, v in ipairs(KeyMap) do
+						coroutine.yield(v, t[v])
+					end
+				end
+				
+				local co = coroutine.create(iterate)
+				
+				local Next = function ()
+					if not co then return nil end			
+					
+					local _, key, val = coroutine.resume(co)
+		
+					return key, val
+				end
+				
+				for k in pairs(t) do
+					x = x + 1
+					KeyMap[x] = k
+				end
+				
+				table.sort(KeyMap, sortFunction)
+
+				return Next, t
+			end
 			
 		end
+		
+		return t, tableInfo
 	end,
 	
 	Splice = function (this, t, begin, deleteCount, ...)
