@@ -206,9 +206,11 @@ The **Concat** method creates a new array consisting of the elements in the arra
 
 &nbsp;
 
-> #### Return Value
+> #### Multiple Return Values
 
-- Returns two values: value1 == A new Array instance, value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+- Returns two values:
+    - value1 == A new Array instance
+    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
 
 ----
 
