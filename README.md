@@ -200,9 +200,11 @@ local newArray = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
 **valueN**
 - Array(s) and/or value(s) to concatenate into a new array; **value1 is required**.
 
+&nbsp;
 
 The **Concat** method creates a new array consisting of the elements in the array on which it is called, followed in order by, for each argument, the elements of that argument (if the argument is an array) or the argument itself (if the argument is not an array). It does not recurse into nested array arguments.
 
+&nbsp;
 
 > #### Return Value
 
