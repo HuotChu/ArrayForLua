@@ -141,7 +141,8 @@ Array:BlockSwap(table, indexA, indexB, count)
 - Index in the array where the **second** block **begins**.
 
 **count**
-- Blocks must be of **equal size**. The length of each block is equal to **count**, so the last index of each block == `*index[A|B]* + *count* - 1`
+- The length of each block is equal to **count**; blocks must be of **equal size**.
+- The last index of each block == `*index[A|B]* + *count* - 1`
 
 > #### Return Value
 
