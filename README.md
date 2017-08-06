@@ -258,9 +258,9 @@ local a = {foo='bar', faa='baz', fee='boz'}
 for k, v in Array:Entries(a) do
     print(k, v)
 end
--- foo  'bar'
 -- faa  'baz'
 -- fee  'boz'
+-- foo  'bar'
 ```
 
 
