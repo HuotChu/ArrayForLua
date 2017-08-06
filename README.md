@@ -66,10 +66,90 @@ Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
 
 ----
 
+&nbsp;
 
-**Array:BinaryLast()**
+### Array:BinaryLast()
 
-**Array:BlockSwap()**
+The **BinaryLast()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the last occurrence.
+If *searchElement* is not found, `nil` is returned.
+
+> #### Example
+
+```lua
+local a = {1, 1, 1, 2, 2, 2, 3, 3}
+
+Array:BinaryLast(a, 2)  -- 6
+Array:BinaryLast(a, 3)  -- 8
+```
+
+> #### Syntax
+
+```lua
+Array:BinaryLast(table, searchElement, startIndex, stopIndex)
+```
+
+> #### Parameters
+
+**table**
+- The table to be searched must be an *array*.
+
+**searchElement**
+- The thing to find in the array.
+
+**startIndex** <kbd>Optional</kbd>
+- Location in the array to begin searching.
+
+**stopIndex** <kbd>Optional</kbd>
+- Location in the array to stop searching.
+
+> #### Return Value
+
+- The last index of the item found in the array; or nil if the item was not found.
+
+----
+
+&nbsp;
+
+### Array:BlockSwap()
+
+The **BlockSwap()** method exchanges one block *(range)* of items in an array with a second block of items.
+
+> #### Example
+
+```lua
+local a = {1, 2, 3, 4, 5, 6, 7, 8}
+
+Array:BlockSwap(a, 1, 5, 4)
+print(Array:toString(a)) -- 5,6,7,8,1,2,3,4
+```
+
+> #### Syntax
+
+```lua
+Array:BlockSwap(table, indexA, indexB, count)
+```
+
+> #### Parameters
+
+**table**
+- The table to be searched must be an *array*.
+
+**indexA**
+- Index in the array where the **first** block **begins**.
+
+**indexB**
+- Index in the array where the **second** block **begins**.
+
+**count**
+- The end positions for block A and block B are calculated by adding **count** to the starting index.
+This ensures both blocks are of **equal size**.
+
+> #### Return Value
+
+- Returns nil; the original table is modified by the function call.
+
+----
+
 
 **Array:Concat()**
 
