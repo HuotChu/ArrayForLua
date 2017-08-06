@@ -1025,14 +1025,27 @@ Array = {
 	end,
 	
 	Swap = function (this, t, ndx1, ndx2)
-		-- no sanity checks on args...
-		-- Swap is optimized for Array:Sort
 		local tmp = t[ndx1]
 		
 		t[ndx1] = t[ndx2]
 		t[ndx2] = tmp
 
 		return nil
+	end,
+	
+	Unshift = function (this, t, ...)
+		local Args = {...}
+		local tableInfo = this:getTableType(t)
+		local length
+		
+		if tableInfo.isArray then
+			for i, v in ipairs(Args) do
+				table.insert(t, i, v)
+			end
+			length = #t
+		end
+		
+		return length, tableInfo
 	end
 	
 }

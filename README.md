@@ -69,6 +69,8 @@ Array library for Lua
 
 **Array:Swap()**
 
+**Array:Unshift()**
+
 **Array:getTableType()**
 
 **Array:isArray()**
@@ -78,3 +80,7 @@ Array library for Lua
 **Array:isEmpty()**
 
 **Array:isMixed()**
+
+**Array:isTable()**
+
+**Array:toString()**
