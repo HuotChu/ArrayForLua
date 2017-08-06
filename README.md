@@ -31,6 +31,8 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 The **BinaryFirst()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the first occurrence.
 If *searchElement* is not found, `nil` is returned.
 
+> #### Example
+
 ```lua
 local a = {1, 1, 1, 2, 2, 2, 3, 3}
 
