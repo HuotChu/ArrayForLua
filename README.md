@@ -1,9 +1,32 @@
-# ArrayForLua
-Array library for Lua
+ArrayForLua
+===================
 
-## Work In Progress...
+This is a collection of Array methods for working with tables and arrays in Lua.
 
-### Function List (Detailed API coming soon)
+----------
+
+
+> Roblox Developers:
+
+> - Starting here, on GitHub...
+> - Click on <i class="icon-file"></i> **Array.lua**
+> - Click the **Raw** button
+> - Press <kbd>Ctrl+A</kbd> to Select All then <kbd>Ctrl+C</kbd> to Copy the code
+> - Open Roblox Studio
+> - Insert a ModuleScript into ReplicatedStorage
+> - Rename the ModuleScript to **Array** and open the file
+> - Delete the starter code in the file, then press <kbd>Ctrl+V</kbd> to paste in the Array code
+> - To include the Array module in other scripts:
+    local ReplicatedStorage = game:GetService('ReplicatedStorage')
+    local Array = require(ReplicatedStorage:WaitForChild('Array'))
+> - Non-copylocked Place with full test coverage and implementation examples [here][2]
+
+
+ArrayForLua API
+--------------------
+
+----------
+
 
 **Array:BinaryFirst()**
 
@@ -86,3 +109,6 @@ Array library for Lua
 **Array:isTable()**
 
 **Array:toString()**
+
+
+[2]: https://www.roblox.com/games/962502063/Array-For-Lua  "Roblox"
