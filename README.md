@@ -1,11 +1,11 @@
 ArrayForLua
 ===================
 
-##This is a collection of Array methods for working with tables and arrays in Lua.
+## This is a collection of Array methods for working with tables and arrays in Lua.
 
 
 > Roblox Developers: Starting on GitHub...
-> - Click on <i class="icon-file"></i> **Array.lua**
+> - Click on **Array.lua**
 > - Click the **Raw** button
 > - Press <kbd>Ctrl+A</kbd> to Select All then <kbd>Ctrl+C</kbd> to Copy the code
 > - Open Roblox Studio
@@ -13,9 +13,11 @@ ArrayForLua
 > - Rename the ModuleScript to **Array** and open the file
 > - Delete the starter code in the file, then press <kbd>Ctrl+V</kbd> to paste in the Array code
 > - To include the Array module in other scripts:
->    local ReplicatedStorage = game:GetService('ReplicatedStorage')
->    local Array = require(ReplicatedStorage:WaitForChild('Array'))
-> - Non-copylocked Place with full test coverage and implementation examples [here][2]
+```sh
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Array = require(ReplicatedStorage:WaitForChild('Array'))
+```
+> - Non-copylocked "Game" with full test coverage and implementation examples [here][2]
 
 
 ArrayForLua API
