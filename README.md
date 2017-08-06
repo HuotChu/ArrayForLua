@@ -326,11 +326,25 @@ local isEveryTrue, tableInfo = Array:Every(table, function, context)
     - table <kbd>Optional</kbd>
         - The table *Every* was called upon.
     - this <kbd>Optional</kbd>
-        - The context to use for the *this* variable. Defaults to the Array API Object.
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
 
 **context** <kbd>Optional</kbd>
 - Optional. Context for the *this* argument passed to *function*.
 
+&nbsp;
+
+The **Every** method executes the provided **function** once for each element present in the table until it finds one where **function** returns a falsy value. If such an element is found, the **Every** method immediately returns false. Otherwise, if **function** returns a truthy value for all elements, **Every** returns true.
+
+**function** is invoked with four arguments: the value of the element, the index of the element, the Table being traversed, and a This object.
+
+**Every** does not mutate the table on which it is called.
+
+The range of elements processed by **Every** is set before the first invocation of **function**. Elements which are appended to the table after the call to **Every** begins will not be visited by **function**. If existing elements of the table are changed, their value as passed to **function** will be the value at the time **Every** visits them; elements that are deleted are not visited.
+
+**Every** acts like the "for all" quantifier in mathematics. In particular, for an empty array, it returns true.
+
+&nbsp;
 
 > #### Multiple Return Values
 
