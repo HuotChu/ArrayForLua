@@ -109,7 +109,7 @@ Array = {
 			done = false
 		end
 		
-		return done, tableInfo
+		return done
 	end,
 	
 ------------------[[  Array Methods  ]]------------------
@@ -221,7 +221,7 @@ Array = {
 			end
 		end
 		
-		return newArray, tableInfo
+		return newArray
 	end,
 	
 	Entries = function (this, t)
@@ -253,7 +253,7 @@ Array = {
 			end
 		end
 		
-		return Next, tableInfo
+		return Next
 	end,
 	
 	Every = function (this, t, callBack, context)
@@ -282,7 +282,7 @@ Array = {
 			end
 		end
 		
-		return result, tableInfo
+		return result
 	end,
 	
 	Fill = function (this, t, val, start, stop)
@@ -308,7 +308,7 @@ Array = {
 			end
 		end
 		
-		return t, tableInfo
+		return t
 	end,
 	
 	Filter = function (this, t, callBack, context)
@@ -334,7 +334,7 @@ Array = {
 			end
 		end
 		
-		return returnArray, tableInfo
+		return returnArray
 	end,
 	
 	Find = function (this, t, callBack, context)
@@ -361,7 +361,7 @@ Array = {
 			end
 		end
 		
-		return result, tableInfo
+		return result
 	end,
 	
 	FindIndex = function (this, t, callBack, context)
@@ -378,7 +378,7 @@ Array = {
 			end
 		end
 
-		return result, tableInfo
+		return result
 	end,
 	
 	ForEach = function (this, t, callBack, context)
@@ -397,7 +397,7 @@ Array = {
 			end
 		end
 		
-		return nil, tableInfo
+		return nil
 	end,
 	
 	From = function (this, o)
@@ -459,7 +459,7 @@ Array = {
 			end
 		end
 		
-		return result, tableInfo
+		return result
 	end,
 	
 	IndexOf = function (this, t, searchElement, fromIndex)
@@ -484,7 +484,7 @@ Array = {
 			end
 		end
 		
-		return found, tableInfo
+		return found
 	end,
 	
 	InsertionSort = function (this, t, start, stop)
@@ -530,7 +530,7 @@ Array = {
 			str = table.concat(t, separator)
 		end
 
-		return str, tableInfo
+		return str
 	end,
 	
 	Keys = function (this, t)
@@ -562,7 +562,7 @@ Array = {
 			end
 		end
 		
-		return Next, tableInfo
+		return Next
 	end,
 	
 	LastIndexOf = function (this, t, searchElement, fromIndex)
@@ -593,7 +593,7 @@ Array = {
 			found = nil
 		end
 		
-		return found, tableInfo
+		return found
 	end,
 	
 	Length = function (this, t)
@@ -613,7 +613,7 @@ Array = {
 			end
 		end
 
-		return length, tableInfo
+		return length
 	end,
 	
 	Map = function (this, t, callBack, context)
@@ -641,7 +641,7 @@ Array = {
 			returnArray = nil
 		end
 		
-		return returnArray, tableInfo
+		return returnArray
 	end,
 	
 	Pop = function (this, t)
@@ -652,7 +652,7 @@ Array = {
 			removed = table.remove(t)
 		end
 		
-		return removed, tableInfo
+		return removed
 	end,
 	
 	Push = function (this, t, ...)
@@ -667,7 +667,7 @@ Array = {
 			length = #t
 		end
 		
-		return length, tableInfo
+		return length
 	end,
 	
 	Reduce = function (this, t, callBack, initialValue)
@@ -700,7 +700,7 @@ Array = {
 
 		end
 		
-		return reducedValue, tableInfo
+		return reducedValue
 	end,
 	
 	ReduceRight = function (this, t, callBack, initialValue)
@@ -733,7 +733,7 @@ Array = {
 
 		end
 		
-		return reducedValue, tableInfo
+		return reducedValue
 	end,
 	
 	Reverse = function (this, t, start, stop)
@@ -776,7 +776,7 @@ Array = {
 			end
 		end
 		
-		return t, tableInfo
+		return t
 	end,
 	
 	Rotate = function (this, t, start, stop, step)
@@ -806,7 +806,7 @@ Array = {
 			removed = table.remove(t, 1)
 		end
 		
-		return removed, tableInfo
+		return removed
 	end,
 	
 	Slice = function (this, t, begin, stop)
@@ -842,7 +842,7 @@ Array = {
 			end
 		end
 		
-		return newArray, tableInfo
+		return newArray
 	end,
 	
 	Some = function (this, t, callBack, context)
@@ -868,7 +868,7 @@ Array = {
 			end
 		end
 		
-		return result, tableInfo
+		return result
 	end,
 	
 	Sort = function (this, t, ...)
@@ -947,7 +947,7 @@ Array = {
 			
 		end
 		
-		return t, tableInfo
+		return t
 	end,
 	
 	Splice = function (this, t, begin, deleteCount, ...)
@@ -996,7 +996,7 @@ Array = {
 			end
 		end
 		
-		return Removed, tableInfo
+		return Removed
 	end,
 	
 	Swap = function (this, t, ndx1, ndx2)
@@ -1020,7 +1020,7 @@ Array = {
 			length = #t
 		end
 		
-		return length, tableInfo
+		return length
 	end,
 	
 	Values = function (this, t)
@@ -1052,7 +1052,7 @@ Array = {
 			end
 		end
 		
-		return Next, tableInfo
+		return Next
 	end
 	
 }

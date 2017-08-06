@@ -188,7 +188,7 @@ local arr3 = Array:Concat(arr1, arr2)
 > #### Syntax
 
 ```lua
-local newArray, tableInfo = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
+local newArray = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
 ```
 
 
@@ -206,11 +206,9 @@ The **Concat** method creates a new array consisting of the elements in the arra
 
 &nbsp;
 
-> #### Multiple Return Values
+> #### Return Value
 
-- Returns two values:
-    - value1 == A new Array instance
-    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+- A new Table instance of sub-type 'Array'
 
 ----
 
@@ -277,11 +275,9 @@ local iterator, tableInfo = Array:Entries(table)
 - The table to iterate over can be array, dictionary, or mixed.
 
 
-> #### Multiple Returns
+> #### Return Value
 
-- Returns two values: 
-    - value1 == The iterator function.
-    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+- The iterator function.
 
 ----
 
@@ -346,11 +342,9 @@ The range of elements processed by **Every** is set before the first invocation 
 
 &nbsp;
 
-> #### Multiple Return Values
+> #### Return Value
 
-- Returns two values:
-    - value1 == The result. **true** if the callback function returns truthy for every table value; otherwise, **false**.
-    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+- The result. **true** if the callback function returns truthy for every table value; otherwise, **false**.
 
 ----
 
@@ -401,11 +395,62 @@ Array:Fill(table, value, start, stop)
 - Dictionary and mixed tables always use the default.
 
 
-> #### Multiple Return Values
+> #### Return Value
 
-- Returns two values:
-    - value1 == The original, modified **table**
-    - value2 == A **tableInfo** object which can be interrogated for sanity checks and bug tracking.
+- The original, modified **table**
+
+----
+
+&nbsp;
+
+### Array:Filter()
+
+
+The **Fill()** method fills all the elements of an array from a start index to an end index with a static value.
+
+Dictionary and mixed tables have unordered indices, so they are always filled from end to end.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+
+Array:Fill(a, 1)
+
+print(Array:toString(a)) -- 1,1,1
+```
+
+
+> #### Syntax
+
+```lua
+Array:Fill(table, value)
+Array:Fill(table, value, start)
+Array:Fill(table, value, start, stop)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to iterate over can be array, dictionary, or mixed.
+
+**value** `Required`
+- The value used to fill all elements of **table**.
+
+**start** <kbd>Optional</kbd>
+- First index, defaults to 1.
+- Dictionary and mixed tables always use the default.
+
+**stop** <kbd>Optional</kbd>
+- Last index, defaults to the length of **table**.
+- Dictionary and mixed tables always use the default.
+
+
+> #### Return Value
+
+- The original, modified **table**
 
 ----
 
