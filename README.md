@@ -314,7 +314,7 @@ local isEveryTrue, tableInfo = Array:Every(table, function, context)
 - The table to iterate over can be array, dictionary, or mixed.
 
 **function** `Required`
-- Function to test for each element, taking four arguments:
+- Function to test for each element, taking up to four arguments:
     - currentValue `Required`
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
@@ -454,10 +454,59 @@ Array:Fill(table, value, start, stop)
 
 ----
 
+&nbsp;
 
-**Array:Filter()**
+### Array:Find()
 
-**Array:Find()**
+
+The **Find()** method returns the value of the first element in a table that satisfies the provided testing function. Otherwise `nil` is returned.
+
+
+> #### Example
+
+```lua
+local moreThanTen = function (n)
+	return n > 10
+end
+
+Array:Find({5, 9, 2, 42, 1, 16}, moreThanTen)  -- 42
+```
+
+
+> #### Syntax
+
+```lua
+Array:Find(table, function, context)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to search can be array, dictionary, or mixed.
+
+**function** `Required`
+- Function to execute on each value in the table, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the table.
+    - table <kbd>Optional</kbd>
+        - The table *Find* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+
+> #### Return Value
+
+- The first value in the table that passes the test; otherwise, nil.
+
+----
+
+
 
 **Array:FindIndex()**
 

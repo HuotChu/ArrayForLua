@@ -339,14 +339,14 @@ Array = {
 	
 	Find = function (this, t, callBack, context)
 		local tableInfo = this:getTableType(t)
-		local success, result
+		local success, result, found
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
 					success, result = pcall(callBack, v, i, t, context or this)
 					if success and result then
-						result = v
+						found = v
 						break
 					end
 				end
@@ -354,14 +354,14 @@ Array = {
 				for k, v in pairs(t) do
 					success, result = pcall(callBack, v, k, t, context or this)
 					if success and result then
-						result = v
+						found = v
 						break
 					end
 				end
 			end
 		end
 		
-		return result
+		return found
 	end,
 	
 	FindIndex = function (this, t, callBack, context)
