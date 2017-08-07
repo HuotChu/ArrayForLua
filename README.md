@@ -220,7 +220,7 @@ The **Concat** method creates a new array consisting of the elements in the arra
 The **Entries()** method returns a new Table Iterator object that contains the key/value pairs for each element in the table.
 
 
-> #### Example 1: Calling the Iterator on a table
+> #### Example 1: Calling the Iterator's internal *Next()* function
 
 ```lua
 local a = {'a', 'b', 'c'}
@@ -876,14 +876,64 @@ Array:Join(table, separator)
 
 ----
 
+&nbsp;
 
-...more documentation is coming. The following methods are also available:
+### Array:Keys()
 
+
+The **Keys()** method returns a new Table Iterator that contains the keys for each element in the table.
+
+
+> #### Example 1: Calling the Iterator's internal *Next()* function
+
+```lua
+local t = {a='foo', b='bar', c='baz'}
+
+iterator = Array:Keys(t)
+iterator()  -- a
+iterator()  -- c
+iterator()  -- b
+```
+
+
+> #### Example 2: Using `for`...`in` loop
+
+```lua
+local t = {a='foo', b='bar', c='baz'}
+
+for k in Array:Keys(a) do
+	print(k)
+end
+-- a
+-- c
+-- b
+```
+
+
+> #### Syntax
+
+```lua
+local iterator = Array:Keys(table)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to iterate over can be array, dictionary, or mixed.
+
+
+> #### Return Value
+
+- The iterator function.
+
+----
 
 &nbsp;
 
+...more documentation is coming. The following methods are also available:
 
-**Array:Keys()**
+&nbsp;
 
 **Array:LastIndexOf()**
 
