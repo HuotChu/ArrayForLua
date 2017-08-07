@@ -42,6 +42,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Join()](#join)
 + [Array:Keys()](#keys)
 + [Array:LastIndexOf()](#lastindexof)
++ [Array:Length()](#length)
 
 &nbsp;
 
@@ -998,12 +999,45 @@ Array:IndexOf(array, searchElement, start)
 
 &nbsp;
 
+### Length
+
+
+The **Length()** method returns the number of elements in a table.
+
+
+> #### Example
+
+```lua
+Array:Length({'foo', 'bar', 'foobar'})     -- 3
+Array:Length({foo='foo', bar='bar', n=1})  -- 3
+```
+
+
+> #### Syntax
+
+```lua
+Array:Length(table)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to iterate over can be array, dictionary, or mixed.
+
+
+> #### Return Value
+
+- A number representing the number of elements in an array. -1 is returned if **array** is not a valid table.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Length()**
 
 **Array:Map()**
 
