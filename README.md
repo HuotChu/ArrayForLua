@@ -632,7 +632,7 @@ Array:ForEach(table, function, context)
 
 **function** `Required`
 - Function to execute for each value in the table, taking up to four arguments:
-    - currentValue `Required`
+    - currentValue <kbd>Optional</kbd>
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
         - The index of the current element being processed in the array.
@@ -653,11 +653,58 @@ Array:ForEach(table, function, context)
 
 ----
 
+&nbsp;
+
+### Array:From()
+
+
+The **From()** method creates a new Array instance from a number, string, or table.
+
+
+> #### Example 1: Array from string
+
+```lua
+local newArray = Array:From('test')
+
+unpack(newArray)  --  t  e  s  t
+```
+
+
+> #### Example 2: Array from table
+
+```lua
+local oldArray = {'a', 'b', 1, 2}
+local newArray = Array:From(oldArray)
+
+newArray[1] = 'b'
+unpack(newArray)  --  'b'  'b'  1  2
+unpack(oldArray)  --  'a'  'b'  1  2
+```
+
+
+> #### Syntax
+
+```lua
+local newArray = Array:From(item)
+```
+
+
+> #### Parameters
+
+**item** `Required`
+- A number, string, or table used to generate a new array.
+
+
+> #### Return Value
+
+- A new Table instance of sub-type Array.
+
+----
+
+
 ...more documentation is coming. The following methods are also available:
 
 
-
-**Array:From()**
 
 **Array:Includes()**
 
