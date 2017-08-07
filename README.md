@@ -26,9 +26,6 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
-  **Table Of Contents**
-
-
 + [Array:BinaryFirst()](#binaryfirst)
 + [Array:BinaryLast()](#binarylast)
 + [Array:BlockSwap()](#blockswap)
@@ -47,6 +44,8 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Join()](#join)
 + [Array:Keys()](#keys)
 + [Array:LastIndexOf()](#lastindexof)
+
+----
 
 &nbsp;
 
