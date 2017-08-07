@@ -372,8 +372,6 @@ unpack(a) -- 1  1  1
 > #### Syntax
 
 ```lua
-Array:Fill(table, value)
-Array:Fill(table, value, start)
 Array:Fill(table, value, start, stop)
 ```
 
@@ -460,7 +458,7 @@ local newArray = Array:Filter(table, callback[, context])
 > #### Parameters
 
 **table** `Required`
-- The table to search can be array, dictionary, or mixed.
+- The table to **Filter** can be array, dictionary, or mixed.
 
 **function** `Required`
 - Function is a predicate, to test each element of the table. Return **true** to keep the element, **false** otherwise, taking up to four arguments:
@@ -628,7 +626,7 @@ Array:ForEach(table, function, context)
 > #### Parameters
 
 **table** `Required`
-- The table to search can be array, dictionary, or mixed.
+- The table to enumerate can be array, dictionary, or mixed.
 
 **function** `Required`
 - Function to execute for each value in the table, taking up to four arguments:
@@ -821,7 +819,7 @@ Array:InsertionSort(array, start, stop)
 > #### Parameters
 
 **array** `Required`
-- The table to be searched must be an *array*.
+- The table to be sorted must be an *array*.
 
 **start** <kbd>Optional</kbd>
 - Index of the first element in the range to be sorted. Defaults to 1.
@@ -836,14 +834,54 @@ Array:InsertionSort(array, start, stop)
 
 ----
 
+&nbsp;
+
+### Array:Join()
+
+
+The **Join()** method joins all values of a table into a string.
+
+
+> #### Example
+
+```lua
+local a = {'Wind', 'Rain', 'Fire'}
+
+Array:Join(a)       -- 'Wind,Rain,Fire'
+Array:Join(a, '-')  -- 'Wind-Rain-Fire'
+```
+
+
+> #### Syntax
+
+```lua
+Array:Join(table, separator)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to **Join** can be array, dictionary, or mixed.
+
+**separator** <kbd>Optional</kbd>
+- Specifies a string to separate each element of the array. 
+- **separator** is converted to a string if necessary. If omitted, the array elements are separated with a comma (','). 
+- If **separator** is an empty string, all elements are joined without any characters between them.
+
+
+> #### Return Value
+
+- A string with all array values joined.
+
+----
+
 
 ...more documentation is coming. The following methods are also available:
 
 
 &nbsp;
 
-
-**Array:Join()**
 
 **Array:Keys()**
 
