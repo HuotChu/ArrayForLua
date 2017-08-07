@@ -586,6 +586,7 @@ Array:FindIndex(array, function, context)
 
 ----
 
+...more documentation is coming. The following methods are also available:
 
 
 **Array:ForEach()**
