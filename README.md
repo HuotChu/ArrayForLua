@@ -1321,12 +1321,69 @@ For a detailed explanation of **ReduceRight**, visit [MDN Array.prototype.reduce
 
 &nbsp;
 
+### Reverse
+
+
+The **Reverse()** method reverses part or all of an array (in place).
+
+When index positions are provided, a sub-array within the Array is reversed. Otherwise, the entire array is reversed.
+
+
+> #### Example
+
+```lua
+local arr1 = {'foo', 'bar', 'foobar'}
+
+Array:Reverse(arr1)
+unpack(arr1)         --  foobar  bar  foo
+
+local arr2 = {1, 2, 3, 'a', 'b', 'c'}
+
+Array:Reverse(arr2, 3, 5)
+unpack(arr2)           --  1  2  b  a  3  c
+```
+
+
+> #### Syntax
+
+```lua
+Array:Reverse(array, start, stop)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be reversed must be an *array*.
+
+**start** <kbd>Optional</kbd>
+- The first index in the range of items to be reversed. Default is 1.
+- If **start** is a negative number, the first index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+
+**stop** <kbd>Optional</kbd>
+- The last index in the range of items to be reversed. Default is the length of **array**.
+- If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+
+&nbsp;
+
+**Reverse** modifies the array on which it is called.
+
+If the calculated value of **stop** is less than the calculated value of **start**, no elements are moved and the array remains unaffected.
+
+&nbsp;
+
+> #### Return Value
+
+- Returns the original, reversed array.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Reverse()**
 
 **Array:Rotate()**
 
