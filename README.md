@@ -26,6 +26,27 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
+- [ArrayForLua API](#)
+		- [Array:BinaryFirst()](#)
+		- [Array:BinaryLast()](#)
+		- [Array:BlockSwap()](#)
+		- [Array:Concat()](#)
+		- [Array:Entries()](#)
+		- [Array:Every()](#)
+		- [Array:Fill()](#)
+		- [Array:Filter()](#)
+		- [Array:Find()](#)
+		- [Array:FindIndex()](#)
+		- [Array:ForEach()](#)
+		- [Array:From()](#)
+		- [Array:Includes()](#)
+		- [Array:IndexOf()](#)
+		- [Array:InsertionSort()](#)
+		- [Array:Join()](#)
+		- [Array:Keys()](#)
+
+&nbsp;
+
 
 ### Array:BinaryFirst()
 
@@ -926,6 +947,49 @@ local iterator = Array:Keys(table)
 > #### Return Value
 
 - The iterator function.
+
+----
+
+&nbsp;
+
+### Array:LastIndexOf()
+
+
+The **LastIndexOf()** method returns the last index at which a given value can be found in the array, or -1 if it is not present.
+
+
+> #### Example
+
+```lua
+local a = {2, 9, 9}; 
+a.indexOf(2); --  1 
+a.indexOf(7); -- -1
+```
+
+
+> #### Syntax
+
+```lua
+Array:IndexOf(array, searchElement, start)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be searched must be an *array*.
+
+**searchElement** `Required`
+- The value to locate in **array**.
+        
+**start** <kbd>Optional</kbd>
+- The position in **array** at which to begin searching for **searchElement**.
+- A negative value searches from the index of #**array** + **fromIndex**. Defaults to 1.
+
+
+> #### Return Value
+
+- The first index of the value in **array**; -1 if not found.
 
 ----
 
