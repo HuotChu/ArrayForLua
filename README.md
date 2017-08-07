@@ -1034,12 +1034,76 @@ Array:Length(table)
 
 &nbsp;
 
-...more documentation is coming. The following methods are also available:
+### Map
+
+
+The **Map()** method creates a new array with the results of calling a provided function on every element in a source table.
+
+
+> #### Example
+
+```lua
+local a = {1, 5, 10, 15}
+local doubles = Array:Map(a, function (n) return n * 2 end)
+
+unpack(doubles)  -- 2  10  20  30
+unpack(a)        -- 1   5  10  15
+
+local b = {1, 4, 9}
+local roots = Array:Map(a, math.sqrt)
+
+unpack(roots)  -- 1  2  3
+unpack(b)      -- 1  4  9
+```
+
+
+> #### Syntax
+
+```lua
+local mappedArray = Array:Map(table, function, context)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to enumerate can be array, dictionary, or mixed.
+
+**function** `Required`
+- Function to execute for each value in the table, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
+    - table <kbd>Optional</kbd>
+        - The table *Map* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+        
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+&nbsp;
+
+**Map** does not mutate the table on which it is called (although **function**, if invoked, may do so).
 
 &nbsp;
 
 
-**Array:Map()**
+> #### Return Value
+
+- A new table with each element being the result of the callback function.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
+...more documentation is coming. The following methods are also available:
+
+&nbsp;
+
 
 **Array:Pop()**
 
