@@ -26,6 +26,8 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
+**TOC**
+
 + [Array:BinaryFirst()](#binaryfirst)
 + [Array:BinaryLast()](#binarylast)
 + [Array:BlockSwap()](#blockswap)
