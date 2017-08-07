@@ -317,7 +317,8 @@ local isEveryTrue = Array:Every(table, function, context)
     - currentValue `Required`
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
-        - The index of the current element being processed in the table.
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
     - table <kbd>Optional</kbd>
         - The table *Every* was called upon.
     - this <kbd>Optional</kbd>
@@ -466,7 +467,8 @@ local newArray = Array:Filter(table, callback[, context])
     - currentValue `Required`
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
-        - The index of the current element being processed in the table.
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
     - table <kbd>Optional</kbd>
         - The table *Filter* was called upon.
     - this <kbd>Optional</kbd>
@@ -525,7 +527,8 @@ Array:Find(table, function, context)
     - currentValue `Required`
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
-        - The index of the current element being processed in the table.
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
     - table <kbd>Optional</kbd>
         - The table *Find* was called upon.
     - this <kbd>Optional</kbd>
@@ -595,10 +598,64 @@ Array:FindIndex(array, function, context)
 
 ----
 
+&nbsp;
+
+### Array:ForEach()
+
+
+The **ForEach()** method executes a provided function once for each table element.
+
+
+> #### Example
+
+```lua
+Array:ForEach({'a', 'b', 'c'}, function (element)
+	print(element)
+end)
+-- 'a'
+-- 'b'
+-- 'c'
+```
+
+
+> #### Syntax
+
+```lua
+Array:ForEach(table, function, context)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to search can be array, dictionary, or mixed.
+
+**function** `Required`
+- Function to execute for each value in the table, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
+    - table <kbd>Optional</kbd>
+        - The table *ForEach* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+        
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+
+> #### Return Value
+
+- nil.
+
+----
+
 ...more documentation is coming. The following methods are also available:
 
 
-**Array:ForEach()**
 
 **Array:From()**
 
