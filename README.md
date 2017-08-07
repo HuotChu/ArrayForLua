@@ -26,24 +26,41 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
-- [ArrayForLua API](#)
-		- [Array:BinaryFirst()](#)
-		- [Array:BinaryLast()](#)
-		- [Array:BlockSwap()](#)
-		- [Array:Concat()](#)
-		- [Array:Entries()](#)
-		- [Array:Every()](#)
-		- [Array:Fill()](#)
-		- [Array:Filter()](#)
-		- [Array:Find()](#)
-		- [Array:FindIndex()](#)
-		- [Array:ForEach()](#)
-		- [Array:From()](#)
-		- [Array:Includes()](#)
-		- [Array:IndexOf()](#)
-		- [Array:InsertionSort()](#)
-		- [Array:Join()](#)
-		- [Array:Keys()](#)
+**TOC**
+
+    - [Array:BinaryFirst()](#)
+    
+    - [Array:BinaryLast()](#)
+    
+    - [Array:BlockSwap()](#)
+    
+    - [Array:Concat()](#)
+    
+    - [Array:Entries()](#)
+    
+    - [Array:Every()](#)
+    
+    - [Array:Fill()](#)
+    
+    - [Array:Filter()](#)
+    
+    - [Array:Find()](#)
+    
+    - [Array:FindIndex()](#)
+    
+    - [Array:ForEach()](#)
+    
+    - [Array:From()](#)
+    
+    - [Array:Includes()](#)
+    
+    - [Array:IndexOf()](#)
+    
+    - [Array:InsertionSort()](#)
+    
+    - [Array:Join()](#)
+    
+    - [Array:Keys()](#)
 
 &nbsp;
 
