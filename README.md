@@ -45,10 +45,13 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Keys()](#keys)
 + [Array:LastIndexOf()](#lastindexof)
 
+&nbsp;
+
 ----
 
 &nbsp;
 
+&nbsp;
 
 ### BinaryFirst
 
@@ -92,6 +95,7 @@ Array:BinaryFirst(array, searchElement, start, stop)
 
 - The first index of the item found in the array; or nil if the item was not found.
 
+[+:top:](#arrayforlua-api)
 ----
 
 &nbsp;
