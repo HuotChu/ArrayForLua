@@ -24,8 +24,6 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 # ArrayForLua API
 
-&nbsp;
-
 + [Array:BinaryFirst()](#binaryfirst)
 + [Array:BinaryLast()](#binarylast)
 + [Array:BlockSwap()](#blockswap)
