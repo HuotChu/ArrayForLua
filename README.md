@@ -24,6 +24,8 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 # ArrayForLua API
 
+&nbsp;
+
 |    Array Methods: B - F       |       Array Methods: I - R        | Array Methods: S - V  |     Array Utility Methods       |
 | ----------------------------- | --------------------------------- | --------------------- | ------------------------------- |
 | [BinaryFirst()](#binaryfirst) | [Includes()](#includes)           | [Shift()](#shift)     | [Length()](#length)             |
