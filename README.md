@@ -701,12 +701,54 @@ local newArray = Array:From(item)
 
 ----
 
+&nbsp;
+
+### Array:Includes()
+
+
+The **Includes()** method determines whether a table includes a certain value, returning true or false as appropriate.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+Array:Includes(a, 2) -- true
+Array:Includes(a, 4) -- false
+```
+
+
+> #### Syntax
+
+```lua
+Array:Includes(table, searchElement, fromIndex)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to search can be array, dictionary, or mixed.
+
+**searchElement** `Required`
+- The value to search for.
+        
+**fromIndex** <kbd>Optional</kbd>
+- The position in **table** at which to begin searching for **searchElement**.
+- A negative value searches from the index of #table + fromIndex. Defaults to 1.
+- **fromIndex** is ignored if **table** is a dictionary or mixed table
+
+
+> #### Return Value
+
+- A Boolean. **true** if **table** contains **searchElement**, **false** otherwise.
+
+----
+
 
 ...more documentation is coming. The following methods are also available:
 
 
-
-**Array:Includes()**
 
 **Array:IndexOf()**
 
