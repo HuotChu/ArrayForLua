@@ -1,7 +1,7 @@
 ArrayForLua
 ===================
 
-This is a collection of Array methods for working with tables and arrays in Lua.
+Array.lua contains a collection of Array methods for working with tables and arrays in Lua.
 
 &nbsp;
 
