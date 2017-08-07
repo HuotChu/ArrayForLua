@@ -195,7 +195,7 @@ Array = {
 			n = n + 1
 		end
 		
-		return nil
+		return t
 	end,
 	
 	Concat = function (this, t, ...)
