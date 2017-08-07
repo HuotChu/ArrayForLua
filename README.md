@@ -1238,7 +1238,7 @@ local reducedValue = Array:Reduce(array, function, initialValue)
         - The current element being processed in the array.
     - index <kbd>Optional</kbd>
         - The index of the current element being processed in the array.
-        - Starting index is 1, if **initialValue** is provided, and index 2 otherwise.
+        - Starting index is 1, if **initialValue** is provided, or index 2 otherwise.
     - table <kbd>Optional</kbd>
         - The table *Map* was called upon.
         
@@ -1249,7 +1249,7 @@ local reducedValue = Array:Reduce(array, function, initialValue)
 
 Calling **Reduce** on an array does not mutate the original array.
 
-For a detailed explanation of how **Reduce** works in general, visit [MDN Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How Reduce Works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#How_reduce_works)
 
 &nbsp;
 
