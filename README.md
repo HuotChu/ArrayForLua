@@ -475,6 +475,12 @@ local newArray = Array:Filter(table, callback[, context])
 **context** <kbd>Optional</kbd>
 - Optional. Context for the *this* argument passed to *function*.
 
+&nbsp;
+
+**Filter()** does not mutate the table on which it is called.
+
+&nbsp;
+
 
 > #### Return Value
 
