@@ -1249,7 +1249,7 @@ local reducedValue = Array:Reduce(array, function, initialValue)
 
 Calling **Reduce** on an array does not mutate the original array.
 
-For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How Reduce Works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#How_reduce_works)
+For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How Reduce Works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#How_reduce_works), keeping in mind that these examples use JavaScript which starts at index 0. Lua arrays start at index 1.
 
 &nbsp;
 
