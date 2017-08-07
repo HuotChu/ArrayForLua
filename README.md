@@ -1023,7 +1023,7 @@ Array:Length(table)
 > #### Parameters
 
 **table** `Required`
-- The table to iterate over can be array, dictionary, or mixed.
+- The table to measure can be array, dictionary, or mixed.
 
 
 > #### Return Value
