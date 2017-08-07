@@ -1362,7 +1362,7 @@ Array:Reverse(array, start, stop)
 
 **stop** <kbd>Optional</kbd>
 - The last index in the range of items to be reversed. Default is the length of **array**.
-- If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+- If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **stop**)
 
 &nbsp;
 
