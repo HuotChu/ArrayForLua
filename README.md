@@ -5,7 +5,7 @@ This is a collection of Array methods for working with tables and arrays in Lua.
 
 &nbsp;
 
-> Roblox Developers: To use, start here on GitHub...
+> Roblox Developers:
 > - Click on :page_facing_up: [**Array.lua**](https://github.com/blujagu/ArrayForLua/blob/master/Array.lua)
 > - Click the <kbd>Raw</kbd> button
 > - Press <kbd>Ctrl+A</kbd> to Select All then <kbd>Ctrl+C</kbd> to Copy the code
