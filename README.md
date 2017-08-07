@@ -795,7 +795,8 @@ Array:IndexOf(array, searchElement, start)
 
 The **InsertionSort()** method sorts an array, in-place, in ascending order.
 
-> The insertion sort algorithm is extremely fast when sorting small arrays (#array <= 10).
+> The insertion sort algorithm is extremely fast when sorting small arrays (from 2 to 10 items).
+
 > Array:Sort() should be used to sort arrays larger than 10 items.
 
 &nbsp;
