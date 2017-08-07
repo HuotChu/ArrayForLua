@@ -472,6 +472,7 @@ local newArray = Array:Filter(table, callback[, context])
     - this <kbd>Optional</kbd>
         - The context to use for the *this* variable.
         - Defaults to the Array API Object.
+        
 **context** <kbd>Optional</kbd>
 - Optional. Context for the *this* argument passed to *function*.
 
@@ -530,6 +531,7 @@ Array:Find(table, function, context)
     - this <kbd>Optional</kbd>
         - The context to use for the *this* variable.
         - Defaults to the Array API Object.
+        
 **context** <kbd>Optional</kbd>
 - Optional. Context for the *this* argument passed to *function*.
 
@@ -582,6 +584,7 @@ Array:FindIndex(array, function, context)
     - this <kbd>Optional</kbd>
         - The context to use for the *this* variable.
         - Defaults to the Array API Object.
+        
 **context** <kbd>Optional</kbd>
 - Optional. Context for the *this* argument passed to *function*.
 
