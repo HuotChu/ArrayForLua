@@ -1228,7 +1228,7 @@ local reducedValue = Array:Reduce(array, function, initialValue)
 > #### Parameters
 
 **array** `Required`
-- The table to be modified must be an *array*.
+- The table to be reduced must be an *array*.
 
 **function** `Required`
 - Function to execute on each element in the array, taking four arguments:
@@ -1246,6 +1246,8 @@ local reducedValue = Array:Reduce(array, function, initialValue)
 - Optional. Value to use as the first argument to the first call to **function**. If no initial value is supplied, the first element in the array will be used.
 
 &nbsp;
+
+Calling **Reduce** on an array does not mutate the original array.
 
 For a detailed explanation of how **Reduce** works in general, visit [MDN Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
