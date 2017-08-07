@@ -1124,7 +1124,7 @@ unpack(a)         -- 1  2
 > #### Syntax
 
 ```lua
-local removedElement = Array:Map(array)
+local removedElement = Array:Pop(array)
 ```
 
 
