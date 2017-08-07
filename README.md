@@ -26,30 +26,29 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
-- [ArrayForLua API](#arrayforlua-api)
-    + [Array:BinaryFirst()](#)
-    + [Array:BinaryLast()](#)
-    + [Array:BlockSwap()](#)
-    + [Array:Concat()](#)
-    + [Array:Entries()](#)
-    + [Array:Every()](#)
-    + [Array:Fill()](#)
-    + [Array:Filter()](#)
-    + [Array:Find()](#)
-    + [Array:FindIndex()](#)
-    + [Array:ForEach()](#)
-    + [Array:From()](#)
-    + [Array:Includes()](#)
-    + [Array:IndexOf()](#)
-    + [Array:InsertionSort()](#)
-    + [Array:Join()](#)
-    + [Array:Keys()](#)
-    + [Array:LastIndexOf()](#)
++ [Array:BinaryFirst()](#binaryfirst)
++ [Array:BinaryLast()](#binarylast)
++ [Array:BlockSwap()](#blockswap)
++ [Array:Concat()](#concat)
++ [Array:Entries()](#entries)
++ [Array:Every()](#every)
++ [Array:Fill()](#fill)
++ [Array:Filter()](#filter)
++ [Array:Find()](#find)
++ [Array:FindIndex()](#findindex)
++ [Array:ForEach()](#foreach)
++ [Array:From()](#from)
++ [Array:Includes()](#includes)
++ [Array:IndexOf()](#indexof)
++ [Array:InsertionSort()](#insertionsort)
++ [Array:Join()](#join)
++ [Array:Keys()](#keys)
++ [Array:LastIndexOf()](#lastindexof)
 
 &nbsp;
 
 
-### Array:BinaryFirst()
+### BinaryFirst
 
 The **BinaryFirst()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the first occurrence.
 If *searchElement* is not found, `nil` is returned.
@@ -95,7 +94,7 @@ Array:BinaryFirst(array, searchElement, start, stop)
 
 &nbsp;
 
-### Array:BinaryLast()
+### BinaryLast
 
 
 The **BinaryLast()** method uses a binary search algorithm to locate instances of *searchElement* in *table* and returns the index of the last occurrence.
@@ -142,7 +141,7 @@ Array:BinaryLast(array, searchElement, start, stop)
 
 &nbsp;
 
-### Array:BlockSwap()
+### BlockSwap
 
 
 The **BlockSwap()** method exchanges one block *(range)* of items in an array with a second block of items.
@@ -189,7 +188,7 @@ Array:BlockSwap(array, indexA, indexB, count)
 
 &nbsp;
 
-### Array:Concat()
+### Concat
 
 
 The **Concat()** method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
@@ -236,7 +235,7 @@ The **Concat** method creates a new array consisting of the elements in the arra
 
 &nbsp;
 
-### Array:Entries()
+### Entries
 
 
 The **Entries()** method returns a new Table Iterator object that contains the key/value pairs for each element in the table.
@@ -304,7 +303,7 @@ local iterator = Array:Entries(table)
 
 &nbsp;
 
-### Array:Every()
+### Every
 
 
 The **Every()** method tests whether all elements in a table pass the test implemented by the provided function.
@@ -372,7 +371,7 @@ The range of elements processed by **Every** is set before the first invocation 
 
 &nbsp;
 
-### Array:Fill()
+### Fill
 
 
 The **Fill()** method fills all the elements of an array from a start index to an end index with a static value.
@@ -423,7 +422,7 @@ Array:Fill(table, value, start, stop)
 
 &nbsp;
 
-### Array:Filter()
+### Filter
 
 
 The **Filter()** method creates a new array with all elements that pass the test implemented by the provided function.
@@ -513,7 +512,7 @@ local newArray = Array:Filter(table, callback[, context])
 
 &nbsp;
 
-### Array:Find()
+### Find
 
 
 The **Find()** method returns the value of the first element in a table that satisfies the provided testing function.
@@ -567,7 +566,7 @@ Array:Find(table, function, context)
 
 &nbsp;
 
-### Array:FindIndex()
+### FindIndex
 
 
 The **FindIndex()** method returns the index of the first element in the array that satisfies the provided testing function or -1 if a match is not found.
@@ -620,7 +619,7 @@ Array:FindIndex(array, function, context)
 
 &nbsp;
 
-### Array:ForEach()
+### ForEach
 
 
 The **ForEach()** method executes a provided function once for each table element.
@@ -675,7 +674,7 @@ Array:ForEach(table, function, context)
 
 &nbsp;
 
-### Array:From()
+### From
 
 
 The **From()** method creates a new Array instance from a number, string, or table.
@@ -723,7 +722,7 @@ local newArray = Array:From(item)
 
 &nbsp;
 
-### Array:Includes()
+### Includes
 
 
 The **Includes()** method determines whether a table includes a certain value, returning true or false as appropriate.
@@ -767,7 +766,7 @@ Array:Includes(table, searchElement, start)
 
 &nbsp;
 
-### Array:IndexOf()
+### IndexOf
 
 
 The **IndexOf()** method returns the first index at which a given value can be found in the array, or -1 if it is not present.
@@ -810,7 +809,7 @@ Array:IndexOf(array, searchElement, start)
 
 &nbsp;
 
-### Array:InsertionSort()
+### InsertionSort
 
 
 The **InsertionSort()** method sorts an array, in-place, in ascending order.
@@ -858,7 +857,7 @@ Array:InsertionSort(array, start, stop)
 
 &nbsp;
 
-### Array:Join()
+### Join
 
 
 The **Join()** method joins all values of a table into a string.
@@ -900,7 +899,7 @@ Array:Join(table, separator)
 
 &nbsp;
 
-### Array:Keys()
+### Keys
 
 
 The **Keys()** method returns a new Table Iterator that contains the keys for each element in the table.
@@ -953,7 +952,7 @@ local iterator = Array:Keys(table)
 
 &nbsp;
 
-### Array:LastIndexOf()
+### LastIndexOf
 
 
 The **LastIndexOf()** method returns the last index at which a given value can be found in the array, or -1 if it is not present.
@@ -1000,7 +999,6 @@ Array:IndexOf(array, searchElement, start)
 
 &nbsp;
 
-**Array:LastIndexOf()**
 
 **Array:Length()**
 
