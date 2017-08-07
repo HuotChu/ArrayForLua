@@ -46,6 +46,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Map()](#map)
 + [Array:Pop()](#pop)
 + [Array:Push()](#push)
++ [Array:Reduce()](#reduce)
 
 &nbsp;
 
@@ -1189,12 +1190,80 @@ local newLength = Array:Push(array, [element1[, ...[, elementN]]])
 
 &nbsp;
 
-...more documentation is coming. The following methods are also available:
+### Reduce
+
+
+The **Reduce()** method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+
+
+> #### Example
+
+```lua
+local arr1 = {0, 1, 2, 3}
+local reduced = Array:Reduce(arr1, function (sum, n)
+	return sum + n
+end)
+
+print(reduced)  -- 6
+
+local arr2 = {{0, 1}, {2, 3}, {4, 5}}
+
+local flattened = Array:Reduce(arr2, function (a, b)
+	return Array:Concat(a, b)
+end, {})
+
+-- flattens to {0, 1, 2, 3, 4, 5}
+
+unpack(flattened)  -- 0  1  2  3  4  5
+```
+
+
+> #### Syntax
+
+```lua
+local reducedArray = Array:Reduce(array, function, initialValue)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**function** `Required`
+- Function to execute on each element in the array, taking four arguments:
+    - accumulator `Required`
+        - The accumulator accumulates **function**'s return values; it is the accumulated value previously returned in the last invocation of **function**, or **initialValue**, if supplied (see below).
+    - currentValue `Required`
+        - The current element being processed in the array.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+        - Starting index is 1, if **initialValue** is provided, and index 2 otherwise.
+    - table <kbd>Optional</kbd>
+        - The table *Map* was called upon.
+        
+**initialValue** <kbd>Optional</kbd>
+- Optional. Value to use as the first argument to the first call to **function**. If no initial value is supplied, the first element in the array will be used.
+
+&nbsp;
+
+For a detailed explanation of how **Reduce** works in general, visit [MDN Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 &nbsp;
 
 
-**Array:Reduce()**
+> #### Return Value
+
+- The value that results from the reduction. Calling reduce on an empty array or non-array object both return nil.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
+...more documentation is coming. The following methods are also available:
+
+&nbsp;
+
 
 **Array:ReduceRight()**
 

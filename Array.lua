@@ -698,7 +698,6 @@ Array = {
 					end
 				end
 			end
-
 		end
 		
 		return reducedValue
