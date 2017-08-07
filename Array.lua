@@ -366,19 +366,20 @@ Array = {
 	
 	FindIndex = function (this, t, callBack, context)
 		local tableInfo = this:getTableType(t)
+		local found = -1
 		local success, result
 		
 		if tableInfo.isArray then
 			for i, v in ipairs(t) do
 				success, result = pcall(callBack, v, i, t, context or this)
 				if success and result then
-					result = i
+					found = i
 					break
 				end
 			end
 		end
 
-		return result
+		return found
 	end,
 	
 	ForEach = function (this, t, callBack, context)

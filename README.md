@@ -46,13 +46,13 @@ Array:BinaryFirst(a, 3)  -- 7
 > #### Syntax
 
 ```lua
-Array:BinaryFirst(table, searchElement, startIndex, stopIndex)
+Array:BinaryFirst(array, searchElement, startIndex, stopIndex)
 ```
 
 
 > #### Parameters
 
-**table** `Required`
+**array** `Required`
 - The table to be searched must be an *array*.
 
 **searchElement** `Required`
@@ -93,13 +93,13 @@ Array:BinaryLast(a, 3)  -- 8
 > #### Syntax
 
 ```lua
-Array:BinaryLast(table, searchElement, startIndex, stopIndex)
+Array:BinaryLast(array, searchElement, startIndex, stopIndex)
 ```
 
 
 > #### Parameters
 
-**table** `Required`
+**array** `Required`
 - The table to be searched must be an *array*.
 
 **searchElement** `Required`
@@ -139,13 +139,13 @@ print(Array:toString(a)) -- 5,6,7,8,1,2,3,4
 > #### Syntax
 
 ```lua
-Array:BlockSwap(table, indexA, indexB, count)
+Array:BlockSwap(array, indexA, indexB, count)
 ```
 
 
 > #### Parameters
 
-**table** `Required`
+**array** `Required`
 - The table to be searched must be an *array*.
 
 **indexA** `Required`
@@ -217,20 +217,19 @@ The **Concat** method creates a new array consisting of the elements in the arra
 ### Array:Entries()
 
 
-The **Entries()** method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+The **Entries()** method returns a new Table Iterator object that contains the key/value pairs for each element in the table.
 
 
-> #### Example 1: Calling the Iterator on an array
+> #### Example 1: Calling the Iterator on a table
 
 ```lua
 local a = {'a', 'b', 'c'}
 local iterator = Array:Entries(a)
-local key, val
 
-key, val = iterator() -- 1  'a'
-key, val = iterator() -- 2  'b'
-key, val = iterator() -- 3  'c'
-key, val = iterator() -- nil  nil
+iterator() -- 1  'a'
+iterator() -- 2  'b'
+iterator() -- 3  'c'
+iterator() -- nil  nil
 ```
 
 
@@ -265,7 +264,7 @@ end
 > #### Syntax
 
 ```lua
-local iterator, tableInfo = Array:Entries(table)
+local iterator = Array:Entries(table)
 ```
 
 
@@ -304,7 +303,7 @@ Array:Every({12, 54, 18, 130, 44}, isBigEnough)   -- true
 > #### Syntax
 
 ```lua
-local isEveryTrue, tableInfo = Array:Every(table, function, context)
+local isEveryTrue = Array:Every(table, function, context)
 ```
 
 
@@ -365,7 +364,7 @@ local a = {1, 2, 3}
 
 Array:Fill(a, 1)
 
-print(Array:toString(a)) -- 1,1,1
+unpack(a) -- 1  1  1
 ```
 
 
@@ -406,51 +405,80 @@ Array:Fill(table, value, start, stop)
 ### Array:Filter()
 
 
-The **Fill()** method fills all the elements of an array from a start index to an end index with a static value.
-
-Dictionary and mixed tables have unordered indices, so they are always filled from end to end.
+The **Filter()** method creates a new array with all elements that pass the test implemented by the provided function.
 
 
-> #### Example
+> #### Example 1: Filter a numeric array
 
 ```lua
-local a = {1, 2, 3}
+local moreThanTen = function (n)
+	return n > 10
+end
 
-Array:Fill(a, 1)
+local filtered = Array:Filter({12, 5, 8, 90, 44}, moreThanTen)
 
-print(Array:toString(a)) -- 1,1,1
+unpack(filtered)  -- 12 90 44
 ```
 
+> #### Example 2: Filter a dictionary table
+
+```lua
+local moreThanTen = function (n)
+	return n > 10
+end
+
+local filtered = Array:Filter({sam=12, mike=5, bob=8, al=90, jim=44}, moreThanTen)
+
+Array:toString(filtered)  -- jim=44,al=90,sam=12
+```
+
+> #### Example 3: Filter items based on search criteria (query)
+
+```lua
+local fruit = {'apple', 'banana', 'grapes', 'mango', 'orange'}
+
+local filterItems = function (query)
+  return Array:Filter(fruit, function (el)
+      return string.find(string.lower(el), string.lower(query)) ~= nil
+  end)
+end
+
+filtered = filterItems('ap')
+unpack(filtered)  -- apple  grapes
+filtered = filterItems('an')
+unpack(filtered)  -- banana  mango  orange
+```
 
 > #### Syntax
 
 ```lua
-Array:Fill(table, value)
-Array:Fill(table, value, start)
-Array:Fill(table, value, start, stop)
+local newArray = Array:Filter(table, callback[, context])
 ```
 
 
 > #### Parameters
 
 **table** `Required`
-- The table to iterate over can be array, dictionary, or mixed.
+- The table to search can be array, dictionary, or mixed.
 
-**value** `Required`
-- The value used to fill all elements of **table**.
-
-**start** <kbd>Optional</kbd>
-- First index, defaults to 1.
-- Dictionary and mixed tables always use the default.
-
-**stop** <kbd>Optional</kbd>
-- Last index, defaults to the length of **table**.
-- Dictionary and mixed tables always use the default.
+**function** `Required`
+- Function is a predicate, to test each element of the table. Return true to keep the element, false otherwise, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the table.
+    - table <kbd>Optional</kbd>
+        - The table *Filter* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
 
 
 > #### Return Value
 
-- The original, modified **table**
+- A new array containing the elements that pass the test implemented by **function**.
 
 ----
 
@@ -459,7 +487,7 @@ Array:Fill(table, value, start, stop)
 ### Array:Find()
 
 
-The **Find()** method returns the value of the first element in a table that satisfies the provided testing function. Otherwise `nil` is returned.
+The **Find()** method returns the value of the first element in a table that satisfies the provided testing function.
 
 
 > #### Example
@@ -506,9 +534,59 @@ Array:Find(table, function, context)
 
 ----
 
+&nbsp;
+
+### Array:FindIndex()
 
 
-**Array:FindIndex()**
+The **FindIndex()** method returns the index of the first element in the array that satisfies the provided testing function or -1 if a match is not found.
+
+
+> #### Example
+
+```lua
+local moreThanTen = function (n)
+	return n > 10
+end
+
+Array:FindIndex({5, 9, 2, 42, 1, 16}, moreThanTen)  -- 4
+```
+
+
+> #### Syntax
+
+```lua
+Array:FindIndex(array, function, context)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be searched must be an *array*.
+
+**function** `Required`
+- Function to execute on each value in the table, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the array.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+    - table <kbd>Optional</kbd>
+        - The array *FindIndex* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+
+> #### Return Value
+
+- The first index within the array containing a value that passes the test; otherwise, -1.
+
+----
+
+
 
 **Array:ForEach()**
 
