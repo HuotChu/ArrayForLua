@@ -24,30 +24,21 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 # ArrayForLua API
 
-+ [Array:BinaryFirst()](#binaryfirst)
-+ [Array:BinaryLast()](#binarylast)
-+ [Array:BlockSwap()](#blockswap)
-+ [Array:Concat()](#concat)
-+ [Array:Entries()](#entries)
-+ [Array:Every()](#every)
-+ [Array:Fill()](#fill)
-+ [Array:Filter()](#filter)
-+ [Array:Find()](#find)
-+ [Array:FindIndex()](#findindex)
-+ [Array:ForEach()](#foreach)
-+ [Array:From()](#from)
-+ [Array:Includes()](#includes)
-+ [Array:IndexOf()](#indexof)
-+ [Array:InsertionSort()](#insertionsort)
-+ [Array:Join()](#join)
-+ [Array:Keys()](#keys)
-+ [Array:LastIndexOf()](#lastindexof)
-+ [Array:Length()](#length)
-+ [Array:Map()](#map)
-+ [Array:Pop()](#pop)
-+ [Array:Push()](#push)
-+ [Array:Reduce()](#reduce)
-+ [Array:ReduceRight()](#reduceright)
+|    Array Methods: B - F       |       Array Methods: I - R        | Array Methods: S - V  |     Array Utility Methods       |
+| ----------------------------- | --------------------------------- | --------------------- | ------------------------------- |
+| [BinaryFirst()](#binaryfirst) | [Includes()](#includes)           | [Shift()](#shift)     | [Length()](#length)             |
+| [BinaryLast()](#binarylast)   | [IndexOf()](#indexof)             | [Slice()](#slice)     | [getTableType()](#gettabletype) |
+| [BlockSwap()](#blockswap)     | [InsertionSort()](#insertionsort) | [Some()](#some)       | [isArray()](#isarray)           |
+| [Concat()](#concat)           | [Join()](#join)                   | [Sort()](#sort)       | [isDictionary()](#isdictionary) |
+| [Entries()](#entries)         | [Keys()](#keys)                   | [Splice()](#splice)   | [isEmpty()](#isempty)           |
+| [Every()](#every)             | [LastIndexOf()](#lastindexof)     | [Swap()](#swap)       | [isMixed()](#ismixed)           |
+| [Fill()](#fill)               | [Map()](#map)                     | [Unshift()](#unshift) | [isTable()](#istable)           |
+| [Filter()](#filter)           | [Pop()](#pop)                     | [Values()](#values)   | [toString()](#tostring)         |
+| [Find()](#find)               | [Push()](#push)                   |                       |                                 |
+| [FindIndex()](#findindex)     | [Reduce()](#reduce)               |                       |                                 |
+| [ForEach()](#foreach)         | [ReduceRight()](#reduceright)     |                       |                                 |
+| [From()](#from)               | [Reverse()](#reverse)             |                       |                                 |
+|                               | [Rotate()](#rotate)               |                       |                                 |
 
 &nbsp;
 
