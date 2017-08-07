@@ -47,6 +47,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Pop()](#pop)
 + [Array:Push()](#push)
 + [Array:Reduce()](#reduce)
++ [Array:ReduceRight()](#reduceright)
 
 &nbsp;
 
@@ -1249,14 +1250,79 @@ local reducedValue = Array:Reduce(array, function, initialValue)
 
 Calling **Reduce** on an array does not mutate the original array.
 
-For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How Reduce Works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#How_reduce_works), keeping in mind that those examples use JavaScript which starts at index 0. Lua arrays start at index 1.
+For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How Reduce Works](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#How_reduce_works), keeping in mind those examples are JavaScript which starts at index 0. Lua arrays start at index 1.
 
 &nbsp;
 
 
 > #### Return Value
 
-- The value that results from the reduction. Calling reduce on an empty array or non-array object both return nil.
+- The value that results from the reduction.
+- Calling **Reduce** on an empty array or non-array object both return nil.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
+### ReduceRight
+
+
+The **ReduceRight()** method applies a function against an accumulator and each element in the array (from right to left) to reduce it to a single value.
+
+
+> #### Example
+
+```lua
+local a = {0, 1, 2, 3, 4}
+reduced = Array:ReduceRight(a, function (prev, cur)
+	return prev..', '..cur
+end)
+
+print(reduced)  -- '4, 3, 2, 1, 0'
+```
+
+
+> #### Syntax
+
+```lua
+local reducedValue = Array:ReduceRight(array, function, initialValue)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be reduced must be an *array*.
+
+**function** `Required`
+- Function to execute on each element in the array, taking four arguments:
+    - accumulator `Required`
+        - The accumulator accumulates **function**'s return values; it is the accumulated value previously returned in the last invocation of **function**, or **initialValue**, if supplied (see below).
+    - currentValue `Required`
+        - The current element being processed in the array.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+        - Starting index is the length of **array**, if **initialValue** is provided, or #**array** - 1 otherwise.
+    - table <kbd>Optional</kbd>
+        - The table *Map* was called upon.
+        
+**initialValue** <kbd>Optional</kbd>
+- Optional. Value to use as the first argument to the first call to **function**. If no initial value is supplied, the last element in the array will be used.
+
+&nbsp;
+
+Calling **ReduceRight** on an array does not mutate the original array.
+
+For a detailed explanation of **ReduceRight**, visit [MDN Array.prototype.reduceRight](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight#Description), keeping in mind those examples are JavaScript which starts at index 0. Lua arrays start at index 1.
+
+&nbsp;
+
+
+> #### Return Value
+
+- The value that results from the reduction.
+- Calling **ReduceRight** on an empty array or non-array object both return nil.
+- Calling **ReduceRight** on an array with 1 item immediately returns that item.
 
 :wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
 
@@ -1266,8 +1332,6 @@ For a detailed explanation of **Reduce**, visit [MDN Array.prototype.reduce: How
 
 &nbsp;
 
-
-**Array:ReduceRight()**
 
 **Array:Reverse()**
 
