@@ -735,8 +735,8 @@ Array:Includes(table, searchElement, fromIndex)
         
 **fromIndex** <kbd>Optional</kbd>
 - The position in **table** at which to begin searching for **searchElement**.
-- A negative value searches from the index of #table + fromIndex. Defaults to 1.
-- **fromIndex** is ignored if **table** is a dictionary or mixed table
+- A negative value searches from the index of #**table** + **fromIndex**. Defaults to 1.
+- **fromIndex** is ignored if **table** is a dictionary or mixed table.
 
 
 > #### Return Value
