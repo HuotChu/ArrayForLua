@@ -132,7 +132,7 @@ The **BlockSwap()** method exchanges one block *(range)* of items in an array wi
 local a = {1, 2, 3, 4, 5, 6, 7, 8}
 
 Array:BlockSwap(a, 1, 5, 4)
-print(Array:toString(a)) -- 5,6,7,8,1,2,3,4
+unpack(a) -- 5  6  7  8  1  2  3  4
 ```
 
 
@@ -462,7 +462,7 @@ local newArray = Array:Filter(table, callback[, context])
 - The table to search can be array, dictionary, or mixed.
 
 **function** `Required`
-- Function is a predicate, to test each element of the table. Return true to keep the element, false otherwise, taking up to four arguments:
+- Function is a predicate, to test each element of the table. Return **true** to keep the element, **false** otherwise, taking up to four arguments:
     - currentValue `Required`
         - The current element being processed in the table.
     - index <kbd>Optional</kbd>
