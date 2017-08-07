@@ -1221,7 +1221,7 @@ unpack(flattened)  -- 0  1  2  3  4  5
 > #### Syntax
 
 ```lua
-local reducedArray = Array:Reduce(array, function, initialValue)
+local reducedValue = Array:Reduce(array, function, initialValue)
 ```
 
 
