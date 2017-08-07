@@ -45,6 +45,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Length()](#length)
 + [Array:Map()](#map)
 + [Array:Pop()](#pop)
++ [Array:Push()](#push)
 
 &nbsp;
 
@@ -1131,7 +1132,7 @@ local removedElement = Array:Pop(array)
 > #### Parameters
 
 **array** `Required`
-- The table to be searched must be an *array*.
+- The table to be modified must be an *array*.
 
 
 > #### Return Value
@@ -1142,12 +1143,56 @@ local removedElement = Array:Pop(array)
 
 &nbsp;
 
+### Push
+
+
+The **Push()** method adds one or more elements to the end of an array and returns the new length of the array.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+local newLength = Array:Push(a, 4)
+
+print(newLength)  -- 4
+unpack(a)         -- 1  2  3  4
+
+newLength = Array:Push(a, 5, 6, 7)
+
+print(newLength)  -- 7
+unpack(a)         -- 1  2  3  4  5  6  7
+```
+
+
+> #### Syntax
+
+```lua
+local newLength = Array:Push(array, [element1[, ...[, elementN]]])
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**elementN** `Required`
+- The value(s) to add to the end of **array**.
+
+
+> #### Return Value
+
+- The new length of the array upon which the method was called.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Push()**
 
 **Array:Reduce()**
 
