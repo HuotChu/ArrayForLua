@@ -43,6 +43,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:Keys()](#keys)
 + [Array:LastIndexOf()](#lastindexof)
 + [Array:Length()](#length)
++ [Array:Map()](#map)
 
 &nbsp;
 
