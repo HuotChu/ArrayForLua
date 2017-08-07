@@ -745,12 +745,55 @@ Array:Includes(table, searchElement, fromIndex)
 
 ----
 
+&nbsp;
+
+### Array:IndexOf()
+
+
+The **IndexOf()** method returns the first index at which a given value can be found in the array, or -1 if it is not present.
+
+
+> #### Example
+
+```lua
+local a = {2, 9, 9}; 
+a.indexOf(2); --  1 
+a.indexOf(7); -- -1
+```
+
+
+> #### Syntax
+
+```lua
+Array:IndexOf(array, searchElement, fromIndex)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be searched must be an *array*.
+
+**searchElement** `Required`
+- The value to locate in **array**.
+        
+**fromIndex** <kbd>Optional</kbd>
+- The position in **array** at which to begin searching for **searchElement**.
+- A negative value searches from the index of #**array** + **fromIndex**. Defaults to 1.
+
+
+> #### Return Value
+
+- The first index of the value in **array**; -1 if not found.
+
+----
+
 
 ...more documentation is coming. The following methods are also available:
 
 
+&nbsp;
 
-**Array:IndexOf()**
 
 **Array:InsertionSort()**
 
