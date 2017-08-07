@@ -515,7 +515,7 @@ Array = {
 			t[j + 1] = tmp
 		end
 		
-		return t, true
+		return t
 	end,
 	
 	Join = function (this, t, separator)

@@ -46,7 +46,7 @@ Array:BinaryFirst(a, 3)  -- 7
 > #### Syntax
 
 ```lua
-Array:BinaryFirst(array, searchElement, startIndex, stopIndex)
+Array:BinaryFirst(array, searchElement, start, stop)
 ```
 
 
@@ -56,12 +56,12 @@ Array:BinaryFirst(array, searchElement, startIndex, stopIndex)
 - The table to be searched must be an *array*.
 
 **searchElement** `Required`
-- The thing to find in the array.
+- The value to find in the array.
 
-**startIndex** <kbd>Optional</kbd>
+**start** <kbd>Optional</kbd>
 - Location in the array to begin searching.
 
-**stopIndex** <kbd>Optional</kbd>
+**stop** <kbd>Optional</kbd>
 - Location in the array to stop searching.
 
 
@@ -93,7 +93,7 @@ Array:BinaryLast(a, 3)  -- 8
 > #### Syntax
 
 ```lua
-Array:BinaryLast(array, searchElement, startIndex, stopIndex)
+Array:BinaryLast(array, searchElement, start, stop)
 ```
 
 
@@ -103,12 +103,12 @@ Array:BinaryLast(array, searchElement, startIndex, stopIndex)
 - The table to be searched must be an *array*.
 
 **searchElement** `Required`
-- The thing to find in the array.
+- The value to find in the array.
 
-**startIndex** <kbd>Optional</kbd>
+**start** <kbd>Optional</kbd>
 - Location in the array to begin searching.
 
-**stopIndex** <kbd>Optional</kbd>
+**stop** <kbd>Optional</kbd>
 - Location in the array to stop searching.
 
 
@@ -721,7 +721,7 @@ Array:Includes(a, 4) -- false
 > #### Syntax
 
 ```lua
-Array:Includes(table, searchElement, fromIndex)
+Array:Includes(table, searchElement, start)
 ```
 
 
@@ -733,7 +733,7 @@ Array:Includes(table, searchElement, fromIndex)
 **searchElement** `Required`
 - The value to search for.
         
-**fromIndex** <kbd>Optional</kbd>
+**start** <kbd>Optional</kbd>
 - The position in **table** at which to begin searching for **searchElement**.
 - A negative value searches from the index of #**table** + **fromIndex**. Defaults to 1.
 - **fromIndex** is ignored if **table** is a dictionary or mixed table.
@@ -765,7 +765,7 @@ a.indexOf(7); -- -1
 > #### Syntax
 
 ```lua
-Array:IndexOf(array, searchElement, fromIndex)
+Array:IndexOf(array, searchElement, start)
 ```
 
 
@@ -777,7 +777,7 @@ Array:IndexOf(array, searchElement, fromIndex)
 **searchElement** `Required`
 - The value to locate in **array**.
         
-**fromIndex** <kbd>Optional</kbd>
+**start** <kbd>Optional</kbd>
 - The position in **array** at which to begin searching for **searchElement**.
 - A negative value searches from the index of #**array** + **fromIndex**. Defaults to 1.
 
@@ -788,14 +788,59 @@ Array:IndexOf(array, searchElement, fromIndex)
 
 ----
 
+&nbsp;
+
+### Array:InsertionSort()
+
+
+The **InsertionSort()** method sorts an array, in-place, in ascending order.
+
+> The insertion sort algorithm is extremely fast when sorting small arrays (#array <= 10).
+> Array:Sort() should be used to sort arrays larger than 10 items.
+
+&nbsp;
+
+> #### Example
+
+```lua
+local a = {9, 7, 6, 15, 16, 5, 10, 11}
+Array:InsertionSort(a)
+
+unpack(a)  -- 5  6  7  9  10  11  15  16
+```
+
+
+> #### Syntax
+
+```lua
+Array:InsertionSort(array, start, stop)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be searched must be an *array*.
+
+**start** <kbd>Optional</kbd>
+- Index of the first element in the range to be sorted. Defaults to 1.
+        
+**stop** <kbd>Optional</kbd>
+- Index of the last element in the range to be sorted. Defaults to #**array**
+
+
+> #### Return Value
+
+- The original, sorted **array**.
+
+----
+
 
 ...more documentation is coming. The following methods are also available:
 
 
 &nbsp;
 
-
-**Array:InsertionSort()**
 
 **Array:Join()**
 
