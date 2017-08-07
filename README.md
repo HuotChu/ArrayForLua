@@ -44,6 +44,7 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 + [Array:LastIndexOf()](#lastindexof)
 + [Array:Length()](#length)
 + [Array:Map()](#map)
++ [Array:Pop()](#pop)
 
 &nbsp;
 
@@ -1038,7 +1039,7 @@ Array:Length(table)
 ### Map
 
 
-The **Map()** method creates a new array with the results of calling a provided function on every element in a source table.
+The **Map()** method creates a new table with the results of calling a provided function on every element in a source table.
 
 
 > #### Example
@@ -1101,12 +1102,50 @@ local mappedArray = Array:Map(table, function, context)
 
 &nbsp;
 
+### Pop
+
+
+The **Pop()** method removes the **last** element from an array and returns that element.
+
+This method changes the length of the array.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+local removed = Array:Pop(a)
+
+print(removed)    -- 3
+unpack(a)         -- 1  2
+```
+
+
+> #### Syntax
+
+```lua
+local removedElement = Array:Map(array)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be searched must be an *array*.
+
+
+> #### Return Value
+
+- The removed element from the array; nil if the array is empty or if the provided **array** is not an array.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Pop()**
 
 **Array:Push()**
 
