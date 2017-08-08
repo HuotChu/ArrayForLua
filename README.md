@@ -1428,7 +1428,7 @@ Array:Rotate(array, start, stop, step)
 
 **Rotate** modifies the array on which it is called.
 
-When an item in the desired range is shifted left or right, another item is pushed off the end of the range as a result. That item is added to the opposite end of the range, allowing movement of items to wrap (rotate) through the indices of the range.
+When an item in the desired range is shifted left or right, another item is pushed off the end of the range as a result. That item is added to the opposite end of the range, allowing movement of items to wrap (rotate) through the table.
 
 &nbsp;
 
@@ -1440,12 +1440,50 @@ When an item in the desired range is shifted left or right, another item is push
 
 &nbsp;
 
+### Shift
+
+
+The **Shift()** method removes the first element from an array and returns that element.
+
+This method changes the length of the array.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+local removed = Array:Shift(a)
+
+unpack(a)         -- 2  3
+print(removed)    -- 1
+```
+
+
+> #### Syntax
+
+```lua
+local removedElement = Array:Shift(array)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+
+> #### Return Value
+
+- The removed element from the array; nil if the array is empty or if the provided **array** is not an array.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Shift()**
 
 **Array:Slice()**
 
