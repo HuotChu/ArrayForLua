@@ -1731,6 +1731,56 @@ The element(s) to add to **array**, beginning at **start**. If you don't specify
 
 &nbsp;
 
+### Swap
+
+
+The **Swap()** method exchanges the values at two locations in an array.
+
+
+> #### Example
+
+```lua
+local arr1 = {'a', 'b', 'c'}
+
+Array:Swap(arr1, 1, 3)
+
+unpack(arr1)  -- 'c'  'b'  'a'
+
+local arr2 = {'foo', 'bar', 'baz', 'foobar'}
+
+Array:Swap(a, 4, 2)
+
+unpack(a)  -- foo  foobar  baz  bar
+```
+
+
+> #### Syntax
+
+```lua
+Array:Swap(array, indexA, indexB)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**indexA** `Required`
+- Index of the value to move into **indexB** of **array**.
+
+**indexB** `Required`
+- Index of the value to move into **indexA** of **array**.
+
+
+> #### Return Value
+
+- The original, modified **array**
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;

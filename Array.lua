@@ -1011,7 +1011,7 @@ Array = {
 		t[ndx1] = t[ndx2]
 		t[ndx2] = tmp
 
-		return nil
+		return t
 	end,
 	
 	Unshift = function (this, t, ...)
