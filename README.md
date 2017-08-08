@@ -1422,7 +1422,7 @@ Array:Rotate(array, start, stop, step)
 - If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **stop**)
 
 **step** `Required`
-- The number of spaces to move elements to the right or left. Positive **step** moves items left, while negative **step** moves items right.
+- The number of spaces to move elements to the right or left. Positive **step** moves items left, while negative **step** moves items right. A **step** of 0 returns **array**, unmodified.
 
 &nbsp;
 
