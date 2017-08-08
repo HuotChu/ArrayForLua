@@ -1531,12 +1531,70 @@ local newArray = Array:Slice(array, start, stop)
 
 &nbsp;
 
+### Some
+
+
+The **Some()** method tests whether some element in a table passes the test implemented by the provided function.
+
+
+> #### Example
+
+```lua
+local moreThanTen = function (n)
+	return n > 10
+end
+
+local someBiggerThanTen = Array:Some({2, 5, 8, 1, 4}, moreThanTen)
+
+print(someBiggerThanTen)  -- false
+
+someBiggerThanTen = Array:Some({2, 8, 1, 12, 4}, moreThanTen)
+
+print(someBiggerThanTen)  -- true
+```
+
+
+> #### Syntax
+
+```lua
+local atLeastOneTrue = Array:Some(table, function, context)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to enumerate can be array, dictionary, or mixed.
+
+**function** `Required`
+- Function to execute for each value in the table, taking up to four arguments:
+    - currentValue `Required`
+        - The current element being processed in the table.
+    - index <kbd>Optional</kbd>
+        - The index of the current element being processed in the array.
+        - For dictionary and mixed tables, the key is returned as the index.
+    - table <kbd>Optional</kbd>
+        - The table *Some* was called upon.
+    - this <kbd>Optional</kbd>
+        - The context to use for the *this* variable.
+        - Defaults to the Array API Object.
+        
+**context** <kbd>Optional</kbd>
+- Optional. Context for the *this* argument passed to *function*.
+
+
+> #### Return Value
+
+- **true** if **function** returns a truthy value for any table value comparison; otherwise, **false**.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Some()**
 
 **Array:Sort()**
 
