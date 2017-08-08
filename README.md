@@ -924,7 +924,7 @@ iterator()  -- b
 ```lua
 local t = {a='foo', b='bar', c='baz'}
 
-for k in Array:Keys(a) do
+for k in Array:Keys(t) do
 	print(k)
 end
 -- a
@@ -1823,26 +1823,81 @@ local newLength = Array:Unshift(array, [element1[, ...[, elementN]]])
 
 &nbsp;
 
-...more documentation is coming. The following methods are also available:
+### Values
+
+
+The **Values()** method returns a new Table Iterator that contains the values for each element in the table.
+
+
+> #### Example 1: Calling the Iterator's internal *Next()* function
+
+```lua
+local a = {'w', 'y', 'k', 'o', 'p'}
+
+local iterator = Array:Values(a)
+
+iterator()  -- 'w'
+iterator()  -- 'y'
+iterator()  -- 'k'
+iterator()  -- 'o'
+iterator()  -- 'p'
+iterator()  -- nil
+```
+
+
+> #### Example 2: Using `for`...`in` loop
+
+```lua
+local t = {a='foo', b='bar', c='baz'}
+
+for k in Array:Values(t) do
+	print(k)
+end
+-- 'foo'
+-- 'baz'
+-- 'bar'
+```
+
+
+> #### Syntax
+
+```lua
+local iterator = Array:Values(table)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to iterate over can be array, dictionary, or mixed.
+
+
+> #### Return Value
+
+- The iterator function.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
+...more documentation is coming. The following utility methods are also available:
 
 &nbsp;
 
 
-**Array:Values()**
+**getTableType**
 
-**Array:getTableType()**
+**isArray**
 
-**Array:isArray()**
+**isDictionary**
 
-**Array:isDictionary()**
+**isEmpty**
 
-**Array:isEmpty()**
+**isMixed**
 
-**Array:isMixed()**
+**isTable**
 
-**Array:isTable()**
-
-**Array:toString()**
+**toString**
 
 :wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
 
