@@ -796,6 +796,8 @@ Array = {
 			this:Reverse(t, calculatedStop + 1, stop)
 			this:Reverse(t, start, stop)
 		end
+		
+		return t
 	end,
 	
 	Shift = function (this, t)

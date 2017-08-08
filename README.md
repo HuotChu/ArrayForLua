@@ -1380,12 +1380,70 @@ If the calculated value of **stop** is less than the calculated value of **start
 
 &nbsp;
 
+### Rotate
+
+
+The **Rotate()** method moves a range of items in an array to the left or right by some number of spaces, with values on the edges wrapping around to the other end.
+
+
+> #### Example
+
+```lua
+local arr1 = {0, 1, 2, 3, 4}
+
+Array:Rotate(arr1, 1, 5, 1)
+unpack(arr1)  --  1  2  3  4  0
+
+local arr2 = {0, 1, 2, 3, 4, 5, 6}
+
+Array:Rotate(arr2, 3, 5, 1)
+unpack(a)     --  0  1  3  4  2  5  6
+```
+
+
+> #### Syntax
+
+```lua
+Array:Rotate(array, start, stop, step)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be reversed must be an *array*.
+
+**start** `Required`
+- The first index in the range of items to be rotated.
+- If **start** is a negative number, the first index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+
+**stop** `Required`
+- The last index in the range of items to be reversed.
+- If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **stop**)
+
+**step** `Required`
+- The number of spaces to move elements to the right or left. Positive **step** moves items left, while negative **step** moves items right.
+
+&nbsp;
+
+**Rotate** modifies the array on which it is called.
+
+When an item in the desired range is shifted left or right, another item is pushed off the end of the range as a result. That item is added to the opposite end of the range, allowing movement of items to wrap (rotate) through the indices of the range.
+
+&nbsp;
+
+> #### Return Value
+
+- Returns the original, rotated array.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Rotate()**
 
 **Array:Shift()**
 
