@@ -1411,7 +1411,7 @@ Array:Rotate(array, start, stop, step)
 > #### Parameters
 
 **array** `Required`
-- The table to be reversed must be an *array*.
+- The table to be rotated must be an *array*.
 
 **start** `Required`
 - The first index in the range of items to be rotated.
