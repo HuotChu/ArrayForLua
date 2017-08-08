@@ -1669,12 +1669,72 @@ Array:Sort(table, direction, function)
 
 &nbsp;
 
+### Splice
+
+
+The **Splice()** method changes the contents of an array by removing existing elements and/or adding new elements.
+
+
+> #### Example
+
+```lua
+local a = {'foo', 'bar', 'foobar'}
+
+local removed = Array:Splice(a, 2, 2, 'raboof', 'rab')
+
+unpack(spliced)  -- 'bar'  'foobar'
+unpack(a)        -- 'foo'  'raboof'  'rab'
+
+  -- reset a
+a = {'foo', 'bar', 'foobar'}
+
+spliced = Array:Splice(a, -1, 2)
+unpack(spliced)  -- 'bar'  'foobar'
+unpack(a)        -- 'foo'
+```
+
+
+> #### Syntax
+
+```lua
+local removedElements = Array:Splice(array, start, deleteCount, [element1[, ...[, elementN]]])
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**start** <kbd>Optional</kbd>
+- The first index in the range of items to be removed. Default is 1.
+- If **start** is a negative number, the start index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+- If the final calculated value of the start index is less than or equal to 0, **start** is set to the length of **array**.
+
+**deleteCount** <kbd>Optional</kbd>
+- An integer indicating the number of old array elements to remove.
+- If **deleteCount** is 0, no elements are removed. In this case, you should specify at least one new **element**.
+- If **deleteCount** is greater than the number of elements left in **array** starting at **start**, then all of the elements through the end of **array** will be deleted.
+- If **deleteCount** is omitted, then all of the elements beginning at **start** through the end of **array** will be deleted.
+
+**elementN** <kbd>Optional</kbd>
+The element(s) to add to **array**, beginning at **start**. If you don't specify any elements, **Splice()** will only remove elements from **array**.
+
+
+> #### Return Value
+
+- An array containing the deleted elements. If only one element is removed, an array of one element is returned.
+- If no elements are removed, an empty array is returned.
+- If **array** is not actually an *array*, nil is returned.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Splice()**
 
 **Array:Swap()**
 

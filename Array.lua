@@ -972,7 +972,11 @@ Array = {
 				begin = L
 			end
 			
-			if deleteCount and deleteCount > 0 then
+			if not deleteCount then
+			    deleteCount = L
+			end
+			
+			if deleteCount > 0 then
 				stop = begin + deleteCount
 				if stop > L then
 					stop = L
