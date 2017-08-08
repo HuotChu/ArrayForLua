@@ -1781,14 +1781,52 @@ Array:Swap(array, indexA, indexB)
 
 &nbsp;
 
+### Unshift
+
+
+The **Unshift()** method adds one or more elements to the beginning of an array and returns the new length of the array.
+
+
+> #### Example
+
+```lua
+local a = {1, 2, 3}
+
+local newLength = Array:Unshift(a, 4, 5)
+
+print(newLength)  -- 5
+unpack(a)         -- 4  5  1  2  3
+```
+
+
+> #### Syntax
+
+```lua
+local newLength = Array:Unshift(array, [element1[, ...[, elementN]]])
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**elementN** `Required`
+- The element(s) to add to the beginning of **array**.
+
+
+> #### Return Value
+
+- The new length of **array**.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Swap()**
-
-**Array:Unshift()**
 
 **Array:Values()**
 
