@@ -1574,7 +1574,7 @@ local atLeastOneTrue = Array:Some(table, function, context)
         - The index of the current element being processed in the array.
         - For dictionary and mixed tables, the key is returned as the index.
     - table <kbd>Optional</kbd>
-        - The table *Some* was called upon.
+        - The table **Some** was called upon.
     - this <kbd>Optional</kbd>
         - The context to use for the *this* variable.
         - Defaults to the Array API Object.
@@ -1591,12 +1591,88 @@ local atLeastOneTrue = Array:Some(table, function, context)
 
 &nbsp;
 
+### Sort
+
+
+The **Sort()** method sorts the elements of an array in place and returns the array.
+
+If **Sort** is called on a dictionary or mixed table, an iterator is returned and the original table is not modified.
+
+
+> #### Example 1: Ascending and descending sort on arrays
+
+```lua
+local a = {5, 9, 12, 2, 1, 55}
+
+Array:Sort(a)
+table.concat(a, ', ')     -- 1, 2, 5, 9, 12, 55
+
+a = {5, 9, 12, 2, 1, 55}  -- reset array
+
+Array:Sort(a, 1)          -- descending sort
+table.concat(a, ', ')     -- 55, 12, 9, 5, 2, 1
+```
+
+> #### Example 2: Sort becomes an iterator when used on dictionary/mixed tables
+
+```lua
+local scores = {tim = 45, tom = 90, ted = 20}
+
+  -- Ascending
+for k, v in Array:Sort(scores) do
+	print(k..' has '..v..' points')
+end
+-- ted has 20 points
+-- tim has 45 points
+-- tom has 90 points
+
+  -- Descending
+for k, v in Array:Sort(scores, 1) do
+	print(k..' has '..v..' points')
+end
+-- tom has 90 points
+-- tim has 45 points
+-- ted has 20 points
+```
+
+
+> #### Syntax
+
+```lua
+Array:Sort(table, direction, function)
+```
+
+
+> #### Parameters
+
+**table** `Required`
+- The table to sort can be array, dictionary, or mixed.
+
+**direction** <kbd>Optional</kbd>
+- Optional. Sort descending by passing 1, ascending by passing -1. Default is -1 (ascending).
+
+**function** <kbd>Optional</kbd>
+- Function that defines the sort order, taking two arguments:
+    - valueA `Required`
+        - The first element to compare.
+    - valueB `Required`
+        - The second element to compare.
+- **function** must return **true** if **valueA** should come before **valueB**.
+
+
+> #### Return Value
+
+- The original, sorted array if **table** is an *array*.
+- Otherwise, an iterator is returned to enumerate **table** in sorted order.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Sort()**
 
 **Array:Splice()**
 
