@@ -1480,12 +1480,61 @@ local removedElement = Array:Shift(array)
 
 &nbsp;
 
+### Slice
+
+
+The **Slice()** method creates a shallow copy of a portion of an array and returns it.
+
+The original array is not modified.
+
+
+> #### Example
+
+```lua
+local a = {'foo', 'bar', 'foobar'}
+local newArray = Array:Slice(a, 2, 3)
+
+unpack(newArray)  -- 'bar'  'foobar'
+unpack(a)         -- 'foo'  'bar'  'foobar'
+
+newArray = Array:Slice(a, -1, -1)
+unpack(sliced)    -- 'bar'
+```
+
+
+> #### Syntax
+
+```lua
+local newArray = Array:Slice(array, start, stop)
+```
+
+
+> #### Parameters
+
+**array** `Required`
+- The table to be modified must be an *array*.
+
+**start** <kbd>Optional</kbd>
+- The first index in the range of items to be returned. Default is 1.
+- If **start** is a negative number, the first index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **start**)
+
+**stop** <kbd>Optional</kbd>
+- The last index in the range of items to be returned. Default is the length of **array**.
+- If **stop** is a negative number, the last index will be offset from the end of the array, and can be calculated as (**array** length) + (negative **stop**)
+
+
+> #### Return Value
+
+- A new array containing the extracted elements.
+
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
+
+&nbsp;
+
 ...more documentation is coming. The following methods are also available:
 
 &nbsp;
 
-
-**Array:Slice()**
 
 **Array:Some()**
 
