@@ -179,7 +179,7 @@ The **BlockSwap()** method exchanges one block *(range)* of items in an array wi
 ```lua
 local A = Array({1, 2, 3, 4, 5, 6, 7, 8})
 
-A:BlockSwap(a, 1, 5, 4)
+A:BlockSwap(1, 5, 4)
 unpack(A) -- 5  6  7  8  1  2  3  4
 ```
 
@@ -286,7 +286,7 @@ Next() -- nil  nil
 ```lua
 local A = Array({'a', 'b', 'c'})
 
-for k, v in A:Entries(a) do
+for k, v in A:Entries() do
     print(k, v)
 end
 -- 1  'a'
@@ -615,7 +615,7 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-local A = {5, 9, 2, 42, 1, 16}
+local A = Array({5, 9, 2, 42, 1, 16})
 
 A:FindIndex(moreThanTen)  -- 4
 ```
@@ -1007,8 +1007,8 @@ The **LastIndexOf()** method returns the last index at which a given value can b
 ```lua
 local A = Array({2, 9, 9})
 
-A.indexOf(2)  --  1 
-A.indexOf(7)  -- -1
+A:indexOf(2)  --  1 
+A:indexOf(7)  -- -1
 ```
 
 
@@ -1052,8 +1052,8 @@ The **Length()** method returns the number of elements in a table.
 local A = {'foo', 'bar', 'foobar'}
 local T = {foo='foo', bar='bar', n=1}
 
-A.Length()  -- 3
-T.Length()  -- 3
+A:Length()  -- 3
+T:Length()  -- 3
 ```
 
 
