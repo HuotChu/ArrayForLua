@@ -1950,5 +1950,13 @@ local iterator = Array.Values(table)
 
 :wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash:[:top:](#arrayforlua-api)
 
+&nbsp;
+
+If ArrayForLua makes you happy, consider [Donate a coffee to the Dev](https://www.roblox.com/library/882892268/Coffee-Reward)
+
+&nbsp;
+
+#### My game: Big Idea https://www.roblox.com/games/798131599/
+
 
 [2]: https://www.roblox.com/games/962502063/Array-For-Lua  "Roblox"
