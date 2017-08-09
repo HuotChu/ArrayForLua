@@ -22,6 +22,31 @@ local Array = require(ReplicatedStorage:WaitForChild('Array'))
 
 &nbsp;
 
+# How to Use
+
+- There are two easy ways to use ArrayForLua methods:
+
+  1. Wrap the table to give it Array methods (internally, via setmetatable).
+  
+  ```lua
+  local t = {4, 1, 3, 2}
+  
+  Array(t)
+  
+  t:Sort()  -- {1, 2, 3, 4}
+  ```
+  
+  2. Call Array methods directly, passing them a table as the first argument
+  
+    ```lua
+    local t = {4, 1, 3, 2}
+    
+    Array.Sort(t)  -- {1, 2, 3, 4}
+    ```
+    
+The API documentation below uses the first method to illustrate implementation as the syntax looks more like native Lua.
+
+
 # ArrayForLua API
 
 &nbsp;
@@ -59,17 +84,17 @@ If *searchElement* is not found, `nil` is returned.
 > #### Example
 
 ```lua
-local a = {1, 1, 1, 2, 2, 2, 3, 3}
+local A = Array({1, 1, 1, 2, 2, 2, 3, 3})
 
-Array:BinaryFirst(a, 2)  -- 4
-Array:BinaryFirst(a, 3)  -- 7
+A:BinaryFirst(2)  -- 4
+A:BinaryFirst(3)  -- 7
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:BinaryFirst(array, searchElement, start, stop)
+Array.BinaryFirst(array, searchElement, start, stop)
 ```
 
 
@@ -106,17 +131,17 @@ If *searchElement* is not found, `nil` is returned.
 > #### Example
 
 ```lua
-local a = {1, 1, 1, 2, 2, 2, 3, 3}
+local A = Array({1, 1, 1, 2, 2, 2, 3, 3})
 
-Array:BinaryLast(a, 2)  -- 6
-Array:BinaryLast(a, 3)  -- 8
+A:BinaryLast(2)  -- 6
+A:BinaryLast(3)  -- 8
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:BinaryLast(array, searchElement, start, stop)
+Array.BinaryLast(array, searchElement, start, stop)
 ```
 
 
@@ -152,17 +177,17 @@ The **BlockSwap()** method exchanges one block *(range)* of items in an array wi
 > #### Example
 
 ```lua
-local a = {1, 2, 3, 4, 5, 6, 7, 8}
+local A = Array({1, 2, 3, 4, 5, 6, 7, 8})
 
-Array:BlockSwap(a, 1, 5, 4)
-unpack(a) -- 5  6  7  8  1  2  3  4
+A:BlockSwap(a, 1, 5, 4)
+unpack(A) -- 5  6  7  8  1  2  3  4
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:BlockSwap(array, indexA, indexB, count)
+Array.BlockSwap(array, indexA, indexB, count)
 ```
 
 
@@ -199,19 +224,19 @@ The **Concat()** method is used to merge two or more arrays. This method does no
 > #### Example
 
 ```lua
-local arr1 = {'a', 'b', 'c'}
-local arr2 = {'d', 'e', 'f'}
+local A1 = Array({'a', 'b', 'c'})
+local A2 = {'d', 'e', 'f'}
 
-local arr3 = Array:Concat(arr1, arr2)
+local A3 = A1:Concat(A2)
 
--- arr3 is a new array { 'a', 'b', 'c', 'd', 'e', 'f' }
+-- A3 is a new array { 'a', 'b', 'c', 'd', 'e', 'f' }
 ```
 
 
 > #### Syntax
 
 ```lua
-local newArray = Array:Concat(sourceArray, value1[, value2[, ...[, valueN]]])
+local newArray = Array.Concat(sourceArray, value1[, value2[, ...[, valueN]]])
 ```
 
 
@@ -246,22 +271,22 @@ The **Entries()** method returns a new Table Iterator object that contains the k
 > #### Example 1: Calling the Iterator's internal *Next()* function
 
 ```lua
-local a = {'a', 'b', 'c'}
-local iterator = Array:Entries(a)
+local A = Array({'a', 'b', 'c'})
+local Next = A:Entries()
 
-iterator() -- 1  'a'
-iterator() -- 2  'b'
-iterator() -- 3  'c'
-iterator() -- nil  nil
+Next() -- 1  'a'
+Next() -- 2  'b'
+Next() -- 3  'c'
+Next() -- nil  nil
 ```
 
 
 > #### Example 2: Using `for`...`in` loop on an array
 
 ```lua
-local a = {'a', 'b', 'c'}
+local A = Array({'a', 'b', 'c'})
 
-for k, v in Array:Entries(a) do
+for k, v in A:Entries(a) do
     print(k, v)
 end
 -- 1  'a'
@@ -273,9 +298,9 @@ end
 > #### Example 3: Using `for`...`in` loop on a dictionary
 
 ```lua
-local a = {foo='bar', faa='baz', fee='boz'}
+local A = Array({foo='bar', faa='baz', fee='boz'})
 
-for k, v in Array:Entries(a) do
+for k, v in A:Entries() do
     print(k, v)
 end
 -- faa  'baz'
@@ -287,7 +312,7 @@ end
 > #### Syntax
 
 ```lua
-local iterator = Array:Entries(table)
+local iterator = Array.Entries(table)
 ```
 
 
@@ -318,15 +343,18 @@ local isBigEnough = function (element, index, array, this) {
   return element >= 10 
 }
 
-Array:Every({12, 5, 8, 130, 44}, isBigEnough)     -- false 
-Array:Every({12, 54, 18, 130, 44}, isBigEnough)   -- true
+local A1 = Array({12, 5, 8, 130, 44})
+local A2 = Array({12, 54, 18, 130, 44})
+
+A1:Every(isBigEnough)   -- false 
+A2:Every(isBigEnough)   -- true
 ```
 
 
 > #### Syntax
 
 ```lua
-local isEveryTrue = Array:Every(table, function, context)
+local isEveryTrue = Array.Every(table, function, context)
 ```
 
 
@@ -384,18 +412,18 @@ Dictionary and mixed tables have unordered indices, so they are always filled fr
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
+local A = Array({1, 2, 3})
 
-Array:Fill(a, 1)
+A:Fill(1)
 
-unpack(a) -- 1  1  1
+unpack(A) -- 1  1  1
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Fill(table, value, start, stop)
+Array.Fill(table, value, start, stop)
 ```
 
 
@@ -437,9 +465,11 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-local filtered = Array:Filter({12, 5, 8, 90, 44}, moreThanTen)
+local A1 = {12, 5, 8, 90, 44}
 
-unpack(filtered)  -- 12 90 44
+local Filtered = A1:Filter(moreThanTen)
+
+unpack(Filtered)  -- 12  90  44
 ```
 
 > #### Example 2: Filter a dictionary table
@@ -449,32 +479,34 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-local filtered = Array:Filter({sam=12, mike=5, bob=8, al=90, jim=44}, moreThanTen)
+local Ages = Array({sam = 12, mike = 5, bob = 8, al = 90, jim = 44})
 
-Array:toString(filtered)  -- jim=44,al=90,sam=12
+local Filtered = Ages:Filter(moreThanTen)
+
+Array.toString(Filtered)  -- 'jim=44,al=90,sam=12'
 ```
 
 > #### Example 3: Filter items based on search criteria (query)
 
 ```lua
-local fruit = {'apple', 'banana', 'grapes', 'mango', 'orange'}
+local Fruit = Array({'apple', 'banana', 'grapes', 'mango', 'orange'})
 
-local filterItems = function (query)
-  return Array:Filter(fruit, function (el)
+local FilterItems = function (query)
+  return Fruit:Filter(function (el)
       return string.find(string.lower(el), string.lower(query)) ~= nil
   end)
 end
 
-filtered = filterItems('ap')
-unpack(filtered)  -- apple  grapes
-filtered = filterItems('an')
-unpack(filtered)  -- banana  mango  orange
+local Filtered = FilterItems('ap')
+unpack(Filtered)  -- apple  grapes
+Filtered = FilterItems('an')
+unpack(Filtered)  -- banana  mango  orange
 ```
 
 > #### Syntax
 
 ```lua
-local newArray = Array:Filter(table, callback[, context])
+local newArray = Array.Filter(table, callback[, context])
 ```
 
 
@@ -527,14 +559,16 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-Array:Find({5, 9, 2, 42, 1, 16}, moreThanTen)  -- 42
+local A = Array({5, 9, 2, 42, 1, 16})
+
+A:Find(moreThanTen)  -- 42
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Find(table, function, context)
+Array.Find(table, function, context)
 ```
 
 
@@ -581,14 +615,16 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-Array:FindIndex({5, 9, 2, 42, 1, 16}, moreThanTen)  -- 4
+local A = {5, 9, 2, 42, 1, 16}
+
+A:FindIndex(moreThanTen)  -- 4
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:FindIndex(array, function, context)
+Array.FindIndex(array, function, context)
 ```
 
 
@@ -630,7 +666,9 @@ The **ForEach()** method executes a provided function once for each table elemen
 > #### Example
 
 ```lua
-Array:ForEach({'a', 'b', 'c'}, function (element)
+local A = Array({'a', 'b', 'c'})
+
+A.ForEach(function (element)
 	print(element)
 end)
 -- 'a'
@@ -642,7 +680,7 @@ end)
 > #### Syntax
 
 ```lua
-Array:ForEach(table, function, context)
+Array.ForEach(table, function, context)
 ```
 
 
@@ -685,7 +723,7 @@ The **From()** method creates a new Array instance from a number, string, or tab
 > #### Example 1: Array from string
 
 ```lua
-local newArray = Array:From('test')
+local newArray = Array.From('test')
 
 unpack(newArray)  --  t  e  s  t
 ```
@@ -695,7 +733,7 @@ unpack(newArray)  --  t  e  s  t
 
 ```lua
 local oldArray = {'a', 'b', 1, 2}
-local newArray = Array:From(oldArray)
+local newArray = Array.From(oldArray)
 
 newArray[1] = 'b'
 unpack(newArray)  --  'b'  'b'  1  2
@@ -706,7 +744,7 @@ unpack(oldArray)  --  'a'  'b'  1  2
 > #### Syntax
 
 ```lua
-local newArray = Array:From(item)
+local newArray = Array.From(item)
 ```
 
 
@@ -733,16 +771,17 @@ The **Includes()** method determines whether a table includes a certain value, r
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
-Array:Includes(a, 2) -- true
-Array:Includes(a, 4) -- false
+local A = Array({1, 2, 3})
+
+A:Includes(2) -- true
+A:Includes(4) -- false
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Includes(table, searchElement, start)
+Array.Includes(table, searchElement, start)
 ```
 
 
@@ -777,16 +816,17 @@ The **IndexOf()** method returns the first index at which a given value can be f
 > #### Example
 
 ```lua
-local a = {2, 9, 9}; 
-a.indexOf(2); --  1 
-a.indexOf(7); -- -1
+local A = Array({2, 9, 9})
+
+A.indexOf(2) --  1 
+A.indexOf(7) -- -1
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:IndexOf(array, searchElement, start)
+Array.IndexOf(array, searchElement, start)
 ```
 
 
@@ -818,24 +858,25 @@ The **InsertionSort()** method sorts an array, in-place, in ascending order.
 
 > The insertion sort algorithm is extremely fast when sorting small arrays (from 2 to 10 items).
 
-> Array:Sort() should be used to sort arrays larger than 10 items.
+> Array.Sort() should be used to sort arrays larger than 10 items.
 
 &nbsp;
 
 > #### Example
 
 ```lua
-local a = {9, 7, 6, 15, 16, 5, 10, 11}
-Array:InsertionSort(a)
+local A = Array({9, 7, 6, 15, 16, 5, 10, 11})
 
-unpack(a)  -- 5  6  7  9  10  11  15  16
+A:InsertionSort()
+
+unpack(A)  -- 5  6  7  9  10  11  15  16
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:InsertionSort(array, start, stop)
+Array.InsertionSort(array, start, stop)
 ```
 
 
@@ -868,17 +909,17 @@ The **Join()** method joins all values of a table into a string.
 > #### Example
 
 ```lua
-local a = {'Wind', 'Rain', 'Fire'}
+local A = Array({'Wind', 'Rain', 'Fire'})
 
-Array:Join(a)       -- 'Wind,Rain,Fire'
-Array:Join(a, '-')  -- 'Wind-Rain-Fire'
+A:Join()     -- 'Wind,Rain,Fire'
+A:Join('-')  -- 'Wind-Rain-Fire'
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Join(table, separator)
+Array.Join(table, separator)
 ```
 
 
@@ -910,21 +951,22 @@ The **Keys()** method returns a new Table Iterator that contains the keys for ea
 > #### Example 1: Calling the Iterator's internal *Next()* function
 
 ```lua
-local t = {a='foo', b='bar', c='baz'}
+local T = Array({a='foo', b='bar', c='baz'})
 
-iterator = Array:Keys(t)
-iterator()  -- a
-iterator()  -- c
-iterator()  -- b
+local Next = Array:Keys(T)
+
+Next()  -- a
+Next()  -- c
+Next()  -- b
 ```
 
 
 > #### Example 2: Using `for`...`in` loop
 
 ```lua
-local t = {a='foo', b='bar', c='baz'}
+local T = Array({a='foo', b='bar', c='baz'})
 
-for k in Array:Keys(t) do
+for k in T:Keys() do
 	print(k)
 end
 -- a
@@ -936,7 +978,7 @@ end
 > #### Syntax
 
 ```lua
-local iterator = Array:Keys(table)
+local iterator = Array.Keys(table)
 ```
 
 
@@ -963,16 +1005,17 @@ The **LastIndexOf()** method returns the last index at which a given value can b
 > #### Example
 
 ```lua
-local a = {2, 9, 9}; 
-a.indexOf(2); --  1 
-a.indexOf(7); -- -1
+local A = Array({2, 9, 9})
+
+A.indexOf(2)  --  1 
+A.indexOf(7)  -- -1
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:IndexOf(array, searchElement, start)
+Array.IndexOf(array, searchElement, start)
 ```
 
 
@@ -1006,15 +1049,18 @@ The **Length()** method returns the number of elements in a table.
 > #### Example
 
 ```lua
-Array:Length({'foo', 'bar', 'foobar'})     -- 3
-Array:Length({foo='foo', bar='bar', n=1})  -- 3
+local A = {'foo', 'bar', 'foobar'}
+local T = {foo='foo', bar='bar', n=1}
+
+A.Length()  -- 3
+T.Length()  -- 3
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Length(table)
+Array.Length(table)
 ```
 
 
@@ -1041,24 +1087,24 @@ The **Map()** method creates a new table with the results of calling a provided 
 > #### Example
 
 ```lua
-local a = {1, 5, 10, 15}
-local doubles = Array:Map(a, function (n) return n * 2 end)
+local A = Array({1, 5, 10, 15})
+local doubles = A:Map(function (n) return n * 2 end)
 
 unpack(doubles)  -- 2  10  20  30
-unpack(a)        -- 1   5  10  15
+unpack(A)        -- 1   5  10  15
 
-local b = {1, 4, 9}
-local roots = Array:Map(a, math.sqrt)
+local B = Array({1, 4, 9})
+local Roots = B:Map(math.sqrt)
 
-unpack(roots)  -- 1  2  3
-unpack(b)      -- 1  4  9
+unpack(Roots)  -- 1  2  3
+unpack(B)      -- 1  4  9
 ```
 
 
 > #### Syntax
 
 ```lua
-local mappedArray = Array:Map(table, function, context)
+local mappedArray = Array.Map(table, function, context)
 ```
 
 
@@ -1109,18 +1155,18 @@ This method changes the length of the array.
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
-local removed = Array:Pop(a)
+local A = Array({1, 2, 3})
+local removed = A:Pop()
 
 print(removed)    -- 3
-unpack(a)         -- 1  2
+unpack(A)         -- 1  2
 ```
 
 
 > #### Syntax
 
 ```lua
-local removedElement = Array:Pop(array)
+local removedElement = Array.Pop(array)
 ```
 
 
@@ -1147,23 +1193,23 @@ The **Push()** method adds one or more elements to the end of an array and retur
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
-local newLength = Array:Push(a, 4)
+local A = Array({1, 2, 3})
+local newLength = A:Push(4)
 
 print(newLength)  -- 4
-unpack(a)         -- 1  2  3  4
+unpack(A)         -- 1  2  3  4
 
-newLength = Array:Push(a, 5, 6, 7)
+newLength = A:Push(5, 6, 7)
 
 print(newLength)  -- 7
-unpack(a)         -- 1  2  3  4  5  6  7
+unpack(A)         -- 1  2  3  4  5  6  7
 ```
 
 
 > #### Syntax
 
 ```lua
-local newLength = Array:Push(array, [element1[, ...[, elementN]]])
+local newLength = Array.Push(array, [element1[, ...[, elementN]]])
 ```
 
 
@@ -1193,29 +1239,29 @@ The **Reduce()** method applies a function against an accumulator and each eleme
 > #### Example
 
 ```lua
-local arr1 = {0, 1, 2, 3}
-local reduced = Array:Reduce(arr1, function (sum, n)
+local A1 = Array({0, 1, 2, 3})
+local Reduced = A1:Reduce(function (sum, n)
 	return sum + n
 end)
 
-print(reduced)  -- 6
+print(Reduced)  -- 6
 
-local arr2 = {{0, 1}, {2, 3}, {4, 5}}
+local A2 = Array({{0, 1}, {2, 3}, {4, 5}})
 
-local flattened = Array:Reduce(arr2, function (a, b)
-	return Array:Concat(a, b)
+local Flattened = A2:Reduce(function (a, b)
+	return Array.Concat(a, b)
 end, {})
 
 -- flattens to {0, 1, 2, 3, 4, 5}
 
-unpack(flattened)  -- 0  1  2  3  4  5
+unpack(Flattened)  -- 0  1  2  3  4  5
 ```
 
 
 > #### Syntax
 
 ```lua
-local reducedValue = Array:Reduce(array, function, initialValue)
+local reducedValue = Array.Reduce(array, function, initialValue)
 ```
 
 
@@ -1266,19 +1312,19 @@ The **ReduceRight()** method applies a function against an accumulator and each 
 > #### Example
 
 ```lua
-local a = {0, 1, 2, 3, 4}
-reduced = Array:ReduceRight(a, function (prev, cur)
+local A = Array({0, 1, 2, 3, 4})
+local Reduced = A:ReduceRight(function (prev, cur)
 	return prev..', '..cur
 end)
 
-print(reduced)  -- '4, 3, 2, 1, 0'
+print(Reduced)  -- '4, 3, 2, 1, 0'
 ```
 
 
 > #### Syntax
 
 ```lua
-local reducedValue = Array:ReduceRight(array, function, initialValue)
+local reducedValue = Array.ReduceRight(array, function, initialValue)
 ```
 
 
@@ -1332,22 +1378,22 @@ When index positions are provided, a sub-array within the Array is reversed. Oth
 > #### Example
 
 ```lua
-local arr1 = {'foo', 'bar', 'foobar'}
+local A1 = Array({'foo', 'bar', 'foobar'})
 
-Array:Reverse(arr1)
-unpack(arr1)         --  foobar  bar  foo
+A1:Reverse()
+unpack(A1)         --  foobar  bar  foo
 
-local arr2 = {1, 2, 3, 'a', 'b', 'c'}
+local A2 = {1, 2, 3, 'a', 'b', 'c'}
 
-Array:Reverse(arr2, 3, 5)
-unpack(arr2)           --  1  2  b  a  3  c
+A2:Reverse(3, 5)
+unpack(A2)           --  1  2  b  a  3  c
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Reverse(array, start, stop)
+Array.Reverse(array, start, stop)
 ```
 
 
@@ -1389,22 +1435,22 @@ The **Rotate()** method moves a range of items in an array to the left or right 
 > #### Example
 
 ```lua
-local arr1 = {0, 1, 2, 3, 4}
+local A1 = Array({0, 1, 2, 3, 4})
 
-Array:Rotate(arr1, 1, 5, 1)
-unpack(arr1)  --  1  2  3  4  0
+A1:Rotate(1, 5, 1)
+unpack(A1)  --  1  2  3  4  0
 
-local arr2 = {0, 1, 2, 3, 4, 5, 6}
+local A2 = Array({0, 1, 2, 3, 4, 5, 6})
 
-Array:Rotate(arr2, 3, 5, 1)
-unpack(a)     --  0  1  3  4  2  5  6
+A2:Rotate(3, 5, 1)
+unpack(A2)     --  0  1  3  4  2  5  6
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Rotate(array, start, stop, step)
+Array.Rotate(array, start, stop, step)
 ```
 
 
@@ -1451,10 +1497,10 @@ This method changes the length of the array.
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
-local removed = Array:Shift(a)
+local A = Array({1, 2, 3})
+local removed = A:Shift()
 
-unpack(a)         -- 2  3
+unpack(A)         -- 2  3
 print(removed)    -- 1
 ```
 
@@ -1462,7 +1508,7 @@ print(removed)    -- 1
 > #### Syntax
 
 ```lua
-local removedElement = Array:Shift(array)
+local removedElement = Array.Shift(array)
 ```
 
 
@@ -1491,21 +1537,21 @@ The original array is not modified.
 > #### Example
 
 ```lua
-local a = {'foo', 'bar', 'foobar'}
-local newArray = Array:Slice(a, 2, 3)
+local A = Array({'foo', 'bar', 'foobar'})
+local newArray = A:Slice(2, 3)
 
 unpack(newArray)  -- 'bar'  'foobar'
-unpack(a)         -- 'foo'  'bar'  'foobar'
+unpack(A)         -- 'foo'  'bar'  'foobar'
 
-newArray = Array:Slice(a, -1, -1)
-unpack(sliced)    -- 'bar'
+newArray = A:Slice(-1, -1)
+unpack(newArray)    -- 'bar'
 ```
 
 
 > #### Syntax
 
 ```lua
-local newArray = Array:Slice(array, start, stop)
+local newArray = Array.Slice(array, start, stop)
 ```
 
 
@@ -1544,11 +1590,14 @@ local moreThanTen = function (n)
 	return n > 10
 end
 
-local someBiggerThanTen = Array:Some({2, 5, 8, 1, 4}, moreThanTen)
+local A1 = Array({2, 5, 8, 1, 4})
+local A2 = Array({2, 8, 1, 12, 4})
+
+local someBiggerThanTen = A1:Some(moreThanTen)
 
 print(someBiggerThanTen)  -- false
 
-someBiggerThanTen = Array:Some({2, 8, 1, 12, 4}, moreThanTen)
+someBiggerThanTen = A2:Some(moreThanTen)
 
 print(someBiggerThanTen)  -- true
 ```
@@ -1557,7 +1606,7 @@ print(someBiggerThanTen)  -- true
 > #### Syntax
 
 ```lua
-local atLeastOneTrue = Array:Some(table, function, context)
+local atLeastOneTrue = Array.Some(table, function, context)
 ```
 
 
@@ -1602,24 +1651,24 @@ If **Sort** is called on a dictionary or mixed table, an iterator is returned an
 > #### Example 1: Ascending and descending sort on arrays
 
 ```lua
-local a = {5, 9, 12, 2, 1, 55}
+local A = Array({5, 9, 12, 2, 1, 55})
 
-Array:Sort(a)
+A:Sort()
 table.concat(a, ', ')     -- 1, 2, 5, 9, 12, 55
 
-a = {5, 9, 12, 2, 1, 55}  -- reset array
+A = Array({5, 9, 12, 2, 1, 55})  -- reset array
 
-Array:Sort(a, 1)          -- descending sort
+A:Sort(1)                 -- descending sort
 table.concat(a, ', ')     -- 55, 12, 9, 5, 2, 1
 ```
 
 > #### Example 2: Sort becomes an iterator when used on dictionary/mixed tables
 
 ```lua
-local scores = {tim = 45, tom = 90, ted = 20}
+local Scores = Array({tim = 45, tom = 90, ted = 20})
 
   -- Ascending
-for k, v in Array:Sort(scores) do
+for k, v in Scores:Sort() do
 	print(k..' has '..v..' points')
 end
 -- ted has 20 points
@@ -1627,7 +1676,7 @@ end
 -- tom has 90 points
 
   -- Descending
-for k, v in Array:Sort(scores, 1) do
+for k, v in Scores:Sort(1) do
 	print(k..' has '..v..' points')
 end
 -- tom has 90 points
@@ -1639,7 +1688,7 @@ end
 > #### Syntax
 
 ```lua
-Array:Sort(table, direction, function)
+Array.Sort(table, direction, function)
 ```
 
 
@@ -1678,26 +1727,26 @@ The **Splice()** method changes the contents of an array by removing existing el
 > #### Example
 
 ```lua
-local a = {'foo', 'bar', 'foobar'}
+local A = Array({'foo', 'bar', 'foobar'})
 
-local removed = Array:Splice(a, 2, 2, 'raboof', 'rab')
+local Removed = A:Splice(2, 2, 'raboof', 'rab')
 
-unpack(spliced)  -- 'bar'  'foobar'
-unpack(a)        -- 'foo'  'raboof'  'rab'
+unpack(Removed)  -- 'bar'  'foobar'
+unpack(A)        -- 'foo'  'raboof'  'rab'
 
   -- reset a
-a = {'foo', 'bar', 'foobar'}
+A = Array({'foo', 'bar', 'foobar'})
 
-spliced = Array:Splice(a, -1, 2)
-unpack(spliced)  -- 'bar'  'foobar'
-unpack(a)        -- 'foo'
+Removed = A:Splice(-1, 2)
+unpack(Removed)  -- 'bar'  'foobar'
+unpack(A)        -- 'foo'
 ```
 
 
 > #### Syntax
 
 ```lua
-local removedElements = Array:Splice(array, start, deleteCount, [element1[, ...[, elementN]]])
+local removedElements = Array.Splice(array, start, deleteCount, [element1[, ...[, elementN]]])
 ```
 
 
@@ -1740,24 +1789,24 @@ The **Swap()** method exchanges the values at two locations in an array.
 > #### Example
 
 ```lua
-local arr1 = {'a', 'b', 'c'}
+local A1 = Array({'a', 'b', 'c'})
 
-Array:Swap(arr1, 1, 3)
+A1:Swap(1, 3)
 
-unpack(arr1)  -- 'c'  'b'  'a'
+unpack(A1)  -- 'c'  'b'  'a'
 
-local arr2 = {'foo', 'bar', 'baz', 'foobar'}
+local A2 = {'foo', 'bar', 'baz', 'foobar'}
 
-Array:Swap(a, 4, 2)
+A2:Swap(4, 2)
 
-unpack(a)  -- foo  foobar  baz  bar
+unpack(A2)  -- foo  foobar  baz  bar
 ```
 
 
 > #### Syntax
 
 ```lua
-Array:Swap(array, indexA, indexB)
+Array.Swap(array, indexA, indexB)
 ```
 
 
@@ -1790,19 +1839,19 @@ The **Unshift()** method adds one or more elements to the beginning of an array 
 > #### Example
 
 ```lua
-local a = {1, 2, 3}
+local A = Array({1, 2, 3})
 
-local newLength = Array:Unshift(a, 4, 5)
+local newLength = A:Unshift(4, 5)
 
 print(newLength)  -- 5
-unpack(a)         -- 4  5  1  2  3
+unpack(A)         -- 4  5  1  2  3
 ```
 
 
 > #### Syntax
 
 ```lua
-local newLength = Array:Unshift(array, [element1[, ...[, elementN]]])
+local newLength = Array.Unshift(array, [element1[, ...[, elementN]]])
 ```
 
 
@@ -1832,25 +1881,25 @@ The **Values()** method returns a new Table Iterator that contains the values fo
 > #### Example 1: Calling the Iterator's internal *Next()* function
 
 ```lua
-local a = {'w', 'y', 'k', 'o', 'p'}
+local A = Array({'w', 'y', 'k', 'o', 'p'})
 
-local iterator = Array:Values(a)
+local Next = A:Values()
 
-iterator()  -- 'w'
-iterator()  -- 'y'
-iterator()  -- 'k'
-iterator()  -- 'o'
-iterator()  -- 'p'
-iterator()  -- nil
+Next()  -- 'w'
+Next()  -- 'y'
+Next()  -- 'k'
+Next()  -- 'o'
+Next()  -- 'p'
+Next()  -- nil
 ```
 
 
 > #### Example 2: Using `for`...`in` loop
 
 ```lua
-local t = {a='foo', b='bar', c='baz'}
+local T = Array({a='foo', b='bar', c='baz'})
 
-for k in Array:Values(t) do
+for k in T:Values() do
 	print(k)
 end
 -- 'foo'
@@ -1862,7 +1911,7 @@ end
 > #### Syntax
 
 ```lua
-local iterator = Array:Values(table)
+local iterator = Array.Values(table)
 ```
 
 

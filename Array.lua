@@ -1,4 +1,4 @@
-local Array = {}
+local Methods = {}
 
 local val_to_str = function (v)
 	if 'string' == type(v) then
@@ -9,7 +9,7 @@ local val_to_str = function (v)
 		
 		return "'"..string.gsub(v, "'", '\\"').."'"
 	else
-		return 'table' == type(v) and Array:toString(v) or tostring(v)
+		return 'table' == type(v) and Methods.toString(v) or tostring(v)
 	end
 end
 
@@ -21,15 +21,17 @@ local key_to_str = function (k)
 	end
 end
 
-Array = {
+Methods = {
 	--[[ Helper & Convenience Functions ]]--
-	getTableType = function (this, t)
+	getTableType = function (t)
 		local o = {isTable = false, isArray = false, isDictionary = false, isMixed = false}
 		local ndx = 0
+		
+		if not t then return nil end
 
 		if type(t) == 'table' then
 			o.isTable = true
-			if this:isEmpty(t) then
+			if Methods.isEmpty(t) then
 				o.isArray = true
 			else
 				for i, val in ipairs(t) do
@@ -57,19 +59,25 @@ Array = {
 		return o
 	end,
 	
-	isArray = function (this, t)
-		local tableInfo = this:getTableType(t)
+	isArray = function (t)
+		if not t then return nil end
+
+		local tableInfo = Methods.getTableType(t)
 		
 		return tableInfo.isArray
 	end,
 	
-	isDictionary = function (this, t)
-		local tableInfo = this:getTableType(t)
+	isDictionary = function (t)
+		if not t then return nil end
+		
+		local tableInfo = Methods.getTableType(t)
 		
 		return tableInfo.isDictionary
 	end,
 	
-	isEmpty = function (this, t)
+	isEmpty = function (t)
+		if not t then return nil end
+
 	    for k, v in pairs(t) do
 	        return false
 	    end
@@ -77,18 +85,24 @@ Array = {
 	    return true
 	end,
 	
-	isMixed = function (this, t)
-		local tableInfo = this:getTableType(t)
+	isMixed = function (t)
+		if not t then return nil end
+		
+		local tableInfo = Methods.getTableType(t)
 		
 		return tableInfo.isMixed
 	end,
 	
-	isTable = function (this, t)
+	isTable = function (t)
+		if not t then return nil end
+		
 		return type(t) == 'table'
 	end,
 	
-	toString = function (this, t)
-		local tableInfo = this:getTableType(t)
+	toString = function (t)
+		if not t then return nil end
+		
+		local tableInfo = Methods.getTableType(t)
 		local result, done = {}, {}
 		
 		if tableInfo.isTable then
@@ -113,7 +127,7 @@ Array = {
 	
 ------------------[[  Array Methods  ]]------------------
 
-	BinaryFirst = function (this, t, searchElement, startIndex, stopIndex)
+	BinaryFirst = function (t, searchElement, startIndex, stopIndex)
 		local middle, value
 		
 		if not startIndex then
@@ -145,7 +159,7 @@ Array = {
 		return startIndex
 	end,
 	
-	BinaryLast = function (this, t, searchElement, startIndex, stopIndex)
+	BinaryLast = function (t, searchElement, startIndex, stopIndex)
 		local middle, value
 		
 		if not startIndex then
@@ -175,7 +189,7 @@ Array = {
 		return startIndex
 	end,
 
-	BlockSwap = function (this, t, indexA, indexB, count)
+	BlockSwap = function (t, indexA, indexB, count)
 		local stopA = indexA + count - 1
 		local stopB = indexB + count - 1
 		local blockA = {}
@@ -197,18 +211,18 @@ Array = {
 		return t
 	end,
 	
-	Concat = function (this, t, ...)
-		local tableInfo = this:getTableType(t)
+	Concat = function (t, ...)
+		local tableInfo = Methods.getTableType(t)
 		local newArray = {}
 		local Args = {...}
 		local arg, tempInfo
 		
 		if tableInfo.isArray then
-			newArray = this:From(t)
+			newArray = Methods.From(t)
 			for i = 1, #Args do
 				arg = Args[i]
 				if type(arg) == 'table' then
-					tempInfo = this:getTableType(arg)
+					tempInfo = Methods.getTableType(arg)
 					if tempInfo.isArray then
 						for _, v in ipairs(arg) do
 							table.insert(newArray, v)
@@ -223,9 +237,9 @@ Array = {
 		return newArray
 	end,
 	
-	Entries = function (this, t)
+	Entries = function (t)
 		local co
-		local tableInfo = this:getTableType(t)
+		local tableInfo = Methods.getTableType(t)
 		local iterateArray = function ()
 			for i, v in ipairs(t) do
 				coroutine.yield(i, v)
@@ -255,25 +269,25 @@ Array = {
 		return Next
 	end,
 	
-	Every = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	Every = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		
 		local success, result
 		
 		if tableInfo.isTable then
-			if this:isEmpty(t) then
+			if Methods.isEmpty(t) then
 				return true, tableInfo
 			end
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 					if not success or not result then
 						break
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 					if not success or not result then
 						break
 					end
@@ -284,12 +298,12 @@ Array = {
 		return result
 	end,
 	
-	Fill = function (this, t, val, start, stop)
-		local tableInfo = this:getTableType(t)
+	Fill = function (t, val, start, stop)
+		local tableInfo = Methods.getTableType(t)
 		local length
 		
 		if tableInfo.isTable then
-			length = this:Length(t)
+			length = Methods.Length(t)
 			if not start or start < 1 then
 				start = 1
 			end
@@ -310,22 +324,22 @@ Array = {
 		return t
 	end,
 	
-	Filter = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	Filter = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		local returnArray = {}
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 					if success and result then
 						table.insert(returnArray, v)
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 					if success and result then
 						returnArray[k] = v
 					end
@@ -336,14 +350,14 @@ Array = {
 		return returnArray
 	end,
 	
-	Find = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	Find = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		local success, result, found
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 					if success and result then
 						found = v
 						break
@@ -351,7 +365,7 @@ Array = {
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 					if success and result then
 						found = v
 						break
@@ -363,14 +377,14 @@ Array = {
 		return found
 	end,
 	
-	FindIndex = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	FindIndex = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		local found = -1
 		local success, result
 		
 		if tableInfo.isArray then
 			for i, v in ipairs(t) do
-				success, result = pcall(callBack, v, i, t, context or this)
+				success, result = pcall(callBack, v, i, t, context or Methods)
 				if success and result then
 					found = i
 					break
@@ -381,18 +395,18 @@ Array = {
 		return found
 	end,
 	
-	ForEach = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	ForEach = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 				end
 			end
 		end
@@ -400,7 +414,7 @@ Array = {
 		return nil
 	end,
 	
-	From = function (this, o)
+	From = function (o)
 		local kind = type(o)
 		local t = {}
 		
@@ -421,12 +435,12 @@ Array = {
 		return t
 	end,
 	
-	Includes = function (this, t, searchElement, fromIndex)
-		local tableInfo = this:getTableType(t)
+	Includes = function (t, searchElement, fromIndex)
+		local tableInfo = Methods.getTableType(t)
 		local length, result
 		
 		if tableInfo.isTable then
-			length = this:Length(t)
+			length = Methods.Length(t)
 			if fromIndex and fromIndex > length then
 				result = false
 			elseif fromIndex and fromIndex < 0 then
@@ -462,8 +476,8 @@ Array = {
 		return result
 	end,
 	
-	IndexOf = function (this, t, searchElement, fromIndex)
-		local tableInfo = this:getTableType(t)
+	IndexOf = function (t, searchElement, fromIndex)
+		local tableInfo = Methods.getTableType(t)
 		local found
 		
 		if tableInfo.isArray then
@@ -487,7 +501,7 @@ Array = {
 		return found
 	end,
 	
-	InsertionSort = function (this, t, start, stop)
+	InsertionSort = function (t, start, stop)
 		local tmp, j
 		
 		if not start then
@@ -517,15 +531,15 @@ Array = {
 		return t
 	end,
 	
-	Join = function (this, t, separator)
-		local tableInfo = this:getTableType(t)
+	Join = function (t, separator)
+		local tableInfo = Methods.getTableType(t)
 		local str
 		
 		separator = separator or ','
 
 		if tableInfo.isTable then
 			if not tableInfo.isArray then
-				t = this:From(t)
+				t = Methods.From(t)
 			end
 			str = table.concat(t, separator)
 		end
@@ -533,9 +547,9 @@ Array = {
 		return str
 	end,
 	
-	Keys = function (this, t)
+	Keys = function (t)
 		local co
-		local tableInfo = this:getTableType(t)
+		local tableInfo = Methods.getTableType(t)
 		local iterateArray = function ()
 			for i = 1, #t do
 				coroutine.yield(i)
@@ -565,8 +579,8 @@ Array = {
 		return Next
 	end,
 	
-	LastIndexOf = function (this, t, searchElement, fromIndex)
-		local tableInfo = this:getTableType(t)
+	LastIndexOf = function (t, searchElement, fromIndex)
+		local tableInfo = Methods.getTableType(t)
 		local found = -1
 		local length
 		
@@ -596,8 +610,8 @@ Array = {
 		return found
 	end,
 	
-	Length = function (this, t)
-		local tableInfo = this:getTableType(t)
+	Length = function (t)
+		local tableInfo = Methods.getTableType(t)
 		local n = 0
 		local length = -1
 		
@@ -616,22 +630,22 @@ Array = {
 		return length
 	end,
 	
-	Map = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	Map = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		local returnArray = {}
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 					if success then
 						table.insert(returnArray, result)
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 					if success then
 						returnArray[k] = result
 					end
@@ -644,8 +658,8 @@ Array = {
 		return returnArray
 	end,
 	
-	Pop = function (this, t)
-		local tableInfo = this:getTableType(t)
+	Pop = function (t)
+		local tableInfo = Methods.getTableType(t)
 		local removed
 		
 		if tableInfo.isArray then
@@ -655,8 +669,8 @@ Array = {
 		return removed
 	end,
 	
-	Push = function (this, t, ...)
-		local tableInfo = this:getTableType(t)
+	Push = function (t, ...)
+		local tableInfo = Methods.getTableType(t)
 		local Args = {...}
 		local length
 		
@@ -670,8 +684,8 @@ Array = {
 		return length
 	end,
 	
-	Reduce = function (this, t, callBack, initialValue)
-		local tableInfo = this:getTableType(t)
+	Reduce = function (t, callBack, initialValue)
+		local tableInfo = Methods.getTableType(t)
 		local accumulator, success, currentValue, reducedValue, start, length
 		
 		if tableInfo.isArray and #t > 0 and callBack and type(callBack) == 'function' then
@@ -702,8 +716,8 @@ Array = {
 		return reducedValue
 	end,
 	
-	ReduceRight = function (this, t, callBack, initialValue)
-		local tableInfo = this:getTableType(t)
+	ReduceRight = function (t, callBack, initialValue)
+		local tableInfo = Methods.getTableType(t)
 		local accumulator, success, currentValue, reducedValue, start, length
 		
 		if tableInfo.isArray and #t > 0 and callBack and type(callBack) == 'function' then
@@ -735,8 +749,8 @@ Array = {
 		return reducedValue
 	end,
 	
-	Reverse = function (this, t, start, stop)
-		local tableInfo = this:getTableType(t)
+	Reverse = function (t, start, stop)
+		local tableInfo = Methods.getTableType(t)
 		local length, distance, temp, startIndex, stopIndex
 		
 		if tableInfo.isArray then
@@ -778,7 +792,7 @@ Array = {
 		return t
 	end,
 	
-	Rotate = function (this, t, start, stop, step)
+	Rotate = function (t, start, stop, step)
 		local length = #t
 		local split, calculatedStart, calculatedStop
 		
@@ -791,16 +805,16 @@ Array = {
 				calculatedStop = stop + step
 			end
 			
-			this:Reverse(t, start, calculatedStop)
-			this:Reverse(t, calculatedStop + 1, stop)
-			this:Reverse(t, start, stop)
+			Methods.Reverse(t, start, calculatedStop)
+			Methods.Reverse(t, calculatedStop + 1, stop)
+			Methods.Reverse(t, start, stop)
 		end
 		
 		return t
 	end,
 	
-	Shift = function (this, t)
-		local tableInfo = this:getTableType(t)
+	Shift = function (t)
+		local tableInfo = Methods.getTableType(t)
 		local removed
 		
 		if tableInfo.isArray and #t > 0 then
@@ -810,8 +824,8 @@ Array = {
 		return removed
 	end,
 	
-	Slice = function (this, t, begin, stop)
-		local tableInfo = this:getTableType(t)
+	Slice = function (t, begin, stop)
+		local tableInfo = Methods.getTableType(t)
 		local newArray, L
 		
 		if tableInfo.isArray then
@@ -846,22 +860,22 @@ Array = {
 		return newArray
 	end,
 	
-	Some = function (this, t, callBack, context)
-		local tableInfo = this:getTableType(t)
+	Some = function (t, callBack, context)
+		local tableInfo = Methods.getTableType(t)
 		
 		local success, result
 		
 		if tableInfo.isTable then
 			if tableInfo.isArray then
 				for i, v in ipairs(t) do
-					success, result = pcall(callBack, v, i, t, context or this)
+					success, result = pcall(callBack, v, i, t, context or Methods)
 					if success and result then
 						break
 					end
 				end
 			else
 				for k, v in pairs(t) do
-					success, result = pcall(callBack, v, k, t, context or this)
+					success, result = pcall(callBack, v, k, t, context or Methods)
 					if success and result then
 						break
 					end
@@ -872,8 +886,8 @@ Array = {
 		return result
 	end,
 	
-	Sort = function (this, t, ...)
-		local tableInfo = this:getTableType(t)
+	Sort = function (t, ...)
+		local tableInfo = Methods.getTableType(t)
 		local Args = {...}
 		local direction, sortFunction, tableSort
 		
@@ -951,10 +965,10 @@ Array = {
 		return t
 	end,
 	
-	Splice = function (this, t, begin, deleteCount, ...)
-		local tableInfo = this:getTableType(t)
+	Splice = function (t, begin, deleteCount, ...)
+		local tableInfo = Methods.getTableType(t)
 		local Args = {...}
-		local ArgsLength = this:Length(Args)
+		local ArgsLength = Methods.Length(Args)
 		local n = 0
 		local Removed, L, stop, r
 		
@@ -985,7 +999,7 @@ Array = {
 					table.insert(Removed, r)
 				end
 				if #Removed > 0 then
-					Removed = this:Reverse(Removed)
+					Removed = Methods.Reverse(Removed)
 				end
 			end
 			
@@ -1004,18 +1018,22 @@ Array = {
 		return Removed
 	end,
 	
-	Swap = function (this, t, ndx1, ndx2)
-		local tmp = t[ndx1]
+	Swap = function (t, ndx1, ndx2)
+		local tableInfo = Methods.getTableType(t)
+		local tmp
 		
-		t[ndx1] = t[ndx2]
-		t[ndx2] = tmp
+		if tableInfo.isArray then
+			tmp = t[ndx1]
+			t[ndx1] = t[ndx2]
+			t[ndx2] = tmp
+		end
 
 		return t
 	end,
 	
-	Unshift = function (this, t, ...)
+	Unshift = function (t, ...)
 		local Args = {...}
-		local tableInfo = this:getTableType(t)
+		local tableInfo = Methods.getTableType(t)
 		local length
 		
 		if tableInfo.isArray then
@@ -1028,9 +1046,9 @@ Array = {
 		return length
 	end,
 	
-	Values = function (this, t)
+	Values = function (t)
 		local co
-		local tableInfo = this:getTableType(t)
+		local tableInfo = Methods.getTableType(t)
 		local iterateArray = function ()
 			for i, v in ipairs(t) do
 				coroutine.yield(v)
@@ -1061,5 +1079,26 @@ Array = {
 	end
 	
 }
+
+local Array = {
+	__index = function (t, k)
+		if Methods[k] then return Methods[k]
+		else return t[k]
+		end
+	end
+}
+
+setmetatable(Array, {
+	__index = function (t, k)
+		if Methods[k] then return Methods[k]
+		else return rawget(t, k)
+		end
+	end,
+	
+	__call = function (self, t)
+		setmetatable(t, self)
+		return t
+	end
+})
 
 return Array
