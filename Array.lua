@@ -36,20 +36,19 @@ Array = {
 					ndx = ndx + 1
 					if i ~= ndx then
 						o.isArray = false
+						o.isMixed = true
 						break
 					end
 					o.isArray = true
 				end
 				
-				if not o.isArray then
+				if not o.isArray and not o.isMixed then
 					for k, v in pairs(t) do
 						if type(k) == 'number' then
 							o.isDictionary = false
-							o.isMixed = true
 							break
 						end
 						o.isDictionary = true
-						o.isMixed = false
 					end
 				end
 			end
