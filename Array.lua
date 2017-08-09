@@ -1,4 +1,4 @@
-local Methods = {}
+local Array, Methods = {}, {}
 
 local val_to_str = function (v)
 	if 'string' == type(v) then
@@ -213,7 +213,7 @@ Methods = {
 	
 	Concat = function (t, ...)
 		local tableInfo = Methods.getTableType(t)
-		local newArray = {}
+		local newArray = Array({})
 		local Args = {...}
 		local arg, tempInfo
 		
@@ -326,7 +326,7 @@ Methods = {
 	
 	Filter = function (t, callBack, context)
 		local tableInfo = Methods.getTableType(t)
-		local returnArray = {}
+		local returnArray = Array({})
 		local success, result
 		
 		if tableInfo.isTable then
@@ -416,7 +416,7 @@ Methods = {
 	
 	From = function (o)
 		local kind = type(o)
-		local t = {}
+		local t = Array({})
 		
 		if kind == 'number' then
 			o = tostring(o)
@@ -632,7 +632,7 @@ Methods = {
 	
 	Map = function (t, callBack, context)
 		local tableInfo = Methods.getTableType(t)
-		local returnArray = {}
+		local returnArray = Array({})
 		local success, result
 		
 		if tableInfo.isTable then
@@ -829,7 +829,7 @@ Methods = {
 		local newArray, L
 		
 		if tableInfo.isArray then
-			newArray = {}
+			newArray = Array({})
 			L = #t
 			
 			if not begin then
@@ -1080,10 +1080,10 @@ Methods = {
 	
 }
 
-local Array = {
+Array = {
 	__index = function (t, k)
 		if Methods[k] then return Methods[k]
-		else return t[k]
+		else return rawget(t, k)
 		end
 	end
 }
