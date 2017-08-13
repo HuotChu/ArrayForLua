@@ -481,6 +481,7 @@ Methods = {
 		local found
 		
 		if tableInfo.isArray then
+		    found = -1
 			if not fromIndex then
 				fromIndex = 1
 			elseif fromIndex < 0 then
@@ -494,7 +495,6 @@ Methods = {
 					found = i
 					break
 				end
-				found = -1
 			end
 		end
 		
