@@ -1085,7 +1085,9 @@ Array = {
 		if Methods[k] then return Methods[k]
 		else return rawget(t, k)
 		end
-	end
+	end,
+
+	__Methods = Methods
 }
 
 setmetatable(Array, {
