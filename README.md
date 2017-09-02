@@ -953,7 +953,7 @@ The **Keys()** method returns a new Table Iterator that contains the keys for ea
 ```lua
 local T = Array({a='foo', b='bar', c='baz'})
 
-local Next = Array:Keys(T)
+local Next = T:Keys()
 
 Next()  -- a
 Next()  -- c
