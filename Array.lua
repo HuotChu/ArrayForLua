@@ -77,12 +77,12 @@ Methods = {
 	
 	isEmpty = function (t)
 		if not t then return nil end
+		
+		if next(t) == nil then
+           return true
+        end
 
-	    for k, v in pairs(t) do
-	        return false
-	    end
-
-	    return true
+	    return false
 	end,
 	
 	isMixed = function (t)
